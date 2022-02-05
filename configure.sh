@@ -6,9 +6,6 @@ set -o pipefail
 # shellcheck disable=SC2155
 export PROJECT_DIR=$(git rev-parse --show-toplevel)
 
-# shellcheck disable=SC2155
-export SOPS_AGE_KEY_FILE=~/.config/sops/age/keys.txt
-
 # shellcheck disable=SC1091
 source "${PROJECT_DIR}/.config.env"
 
@@ -138,7 +135,7 @@ verify_age() {
         _log "INFO" "Age public key is in the correct format"
     fi
 
-    if [[ ! -f ~/.config/sops/age/keys.txt ]]; then
+    if [[ ! -f $SOPS_AGE_KEY_FILE ]]; then
         _log "ERROR" "Unable to find Age file keys.txt in ~/.config/sops/age"
         exit 1
     else
@@ -226,7 +223,7 @@ verify_ansible_hosts() {
     local node_hostname=
     local default_control_node_prefix=
     local default_worker_node_prefix=
-    
+
     default_control_node_prefix="BOOTSTRAP_ANSIBLE_DEFAULT_CONTROL_NODE_HOSTNAME_PREFIX"
     default_worker_node_prefix="BOOTSTRAP_ANSIBLE_DEFAULT_NODE_HOSTNAME_PREFIX"
     _has_optional_envar "${default_control_node_prefix}"
@@ -236,16 +233,18 @@ verify_ansible_hosts() {
         node_id=$(echo "${var}" | awk -F"_" '{print $5}')
         node_addr="BOOTSTRAP_ANSIBLE_HOST_ADDR_${node_id}"
         node_username="BOOTSTRAP_ANSIBLE_SSH_USERNAME_${node_id}"
+        node_port="BOOTSTRAP_ANSIBLE_SSH_PORT_${node_id}"
         node_password="BOOTSTRAP_ANSIBLE_SUDO_PASSWORD_${node_id}"
         node_control="BOOTSTRAP_ANSIBLE_CONTROL_NODE_${node_id}"
         node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
         _has_envar "${node_addr}"
         _has_envar "${node_username}"
+        _has_envar "${node_port}"
         _has_envar "${node_password}"
         _has_envar "${node_control}"
         _has_optional_envar "${node_hostname}"
 
-        if ssh -q -o BatchMode=yes -o ConnectTimeout=5 "${!node_username}"@"${!var}" "true"; then
+        if ssh -q -o BatchMode=yes -o ConnectTimeout=5 -p ${!node_port} "${!node_username}"@"${!var}" "true"; then
             _log "INFO" "Successfully SSH'ed into host '${!var}' with username '${!node_username}'"
         else
             _log "ERROR" "Unable to SSH into host '${!var}' with username '${!node_username}'"
