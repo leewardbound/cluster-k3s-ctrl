@@ -95,6 +95,10 @@ spec:
     cephFileSystems:
       - name: cephfs-hdd
         spec:
+          preserveFilesystemOnDelete: false
+          metadataServer:
+            activeCount: 1
+            activeStandby: true
           metadataPool:
             deviceClass: hdd
             replicated:
