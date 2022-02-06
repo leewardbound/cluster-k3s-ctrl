@@ -92,5 +92,57 @@ spec:
             csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
             csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
             csi.storage.k8s.io/fstype: ext4
-    cephFileSystems: []
+    cephFileSystems:
+      - name: cephfs-hdd
+        spec:
+          metadataPool:
+            deviceClass: hdd
+            replicated:
+              size: 2
+              requireSafeReplicaSize: true
+            parameters:
+              # Inline compression mode for the data pool
+              # Further reference: https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#inline-compression
+              compression_mode: none
+              # gives a hint (%) to Ceph in terms of expected consumption of the total cluster capacity of a given pool
+              # for more info: https://docs.ceph.com/docs/master/rados/operations/placement-groups/#specifying-expected-pool-size
+              target_size_ratio: ".5"
+          # The list of data pool specs. Can use replication or erasure coding.
+          dataPools:
+            - name: replicated
+              failureDomain: host
+              deviceClass: hdd
+              replicated:
+                size: 2
+                # Disallow setting pool with replica 1, this could lead to data loss without recovery.
+                # Make sure you're *ABSOLUTELY CERTAIN* that is what you want
+                requireSafeReplicaSize: true
+              parameters:
+                # Inline compression mode for the data pool
+                # Further reference: https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#inline-compression
+                compression_mode: none
+                # gives a hint (%) to Ceph in terms of expected consumption of the total cluster capacity of a given pool
+                # for more info: https://docs.ceph.com/docs/master/rados/operations/placement-groups/#specifying-expected-pool-size
+                target_size_ratio: ".5"
+        storageClass:
+          enabled: true
+          name: cephfs-hdd
+          isDefault: false
+          reclaimPolicy: Delete
+          allowVolumeExpansion: true
+          parameters:
+            imageFormat: "2"
+            imageFeatures: layering
+            pool: cephfs-hdd-replicated
+            clusterID: rook-ceph
+            fsName: cephfs-hdd
+            csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+            csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+            csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+            csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+            csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+            csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+            csi.storage.k8s.io/fstype: ext4
+
+
     cephObjectStores: []
