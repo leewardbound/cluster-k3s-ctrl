@@ -133,9 +133,6 @@ spec:
           parameters:
             imageFormat: "2"
             imageFeatures: layering
-            pool: cephfs-hdd-replicated
-            clusterID: rook-ceph
-            fsName: cephfs-hdd
             csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
             csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
             csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
