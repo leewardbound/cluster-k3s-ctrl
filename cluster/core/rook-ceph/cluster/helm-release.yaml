@@ -59,15 +59,17 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: "k8s-3"
+          - name: "enterprise"
             devices:
-              - name: "nvme0n1"
-          - name: "k8s-4"
+              - name: "sdb"
+          - name: "vega"
             devices:
-              - name: "nvme0n1"
-          - name: "k8s-5"
+              - name: "sdb"
+              - name: "sdc"
+          - name: "ziti"
             devices:
-              - name: "nvme0n1"
+              - name: "sda"
+              - name: "sdc"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
