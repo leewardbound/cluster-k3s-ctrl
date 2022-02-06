@@ -309,6 +309,8 @@ generate_ansible_hosts() {
         for var in "${!BOOTSTRAP_ANSIBLE_HOST_ADDR_@}"; do
             node_id=$(echo "${var}" | awk -F"_" '{print $5}')
             node_control="BOOTSTRAP_ANSIBLE_CONTROL_NODE_${node_id}"
+            node_port="BOOTSTRAP_ANSIBLE_SSH_PORT_${node_id}"
+            node_username="BOOTSTRAP_ANSIBLE_SSH_USERNAME_${node_id}"
             if [[ "${!node_control}" == "true" ]]; then
                 node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
                 host_key="${!node_hostname:-${default_control_node_prefix}}"
@@ -319,6 +321,8 @@ generate_ansible_hosts() {
             fi
                 printf "        %s:\n" "${node_hostname}"
                 printf "          ansible_host: %s\n" "${!var}"
+                printf "          ansible_port: %s\n" "${!node_port}"
+                printf "          ansible_user: %s\n" "${!node_username}"
             else
                 worker_node_count=$((worker_node_count+1))
             fi
@@ -329,6 +333,8 @@ generate_ansible_hosts() {
             for var in "${!BOOTSTRAP_ANSIBLE_HOST_ADDR_@}"; do
                 node_id=$(echo "${var}" | awk -F"_" '{print $5}')
                 node_control="BOOTSTRAP_ANSIBLE_CONTROL_NODE_${node_id}"
+                node_port="BOOTSTRAP_ANSIBLE_SSH_PORT_${node_id}"
+                node_username="BOOTSTRAP_ANSIBLE_SSH_USERNAME_${node_id}"
                 if [[ "${!node_control}" == "false" ]]; then
                     node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
                     host_key="${!node_hostname:-${default_worker_node_prefix}}"
@@ -339,6 +345,8 @@ generate_ansible_hosts() {
                     fi
                     printf "        %s:\n" "${node_hostname}"
                     printf "          ansible_host: %s\n" "${!var}"
+                    printf "          ansible_port: %s\n" "${!node_port}"
+                    printf "          ansible_user: %s\n" "${!node_username}"
                 fi
             done
         fi
