@@ -15,10 +15,22 @@ tasks:
       - kubectl apply --kustomize=./cluster/base/flux-system || kubectl apply --kustomize=./cluster/base/flux-system
       - cat $SOPS_AGE_KEY_FILE | kubectl -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
 
-  status:
-    desc: Initialize Flux Base (may have errors due to CRD race conditions, but should re-attempt once)
+  sync-status:
+    desc: Get status of kustomization sync
     cmds:
       - "kubectl get kustomization -n flux-system | grep -vP 'revision: (?!main/)'"
+
+  helm-status:
+    desc: Get status of HelmReleases
+    cmds:
+      - "kubectl get helmrelease -A"
+
+  status:
+    desc: Status of flux system
+    cmds:
+      - task flux:sync-status && echo "---------------------------------------------"
+      - task flux:helm-status && echo "---------------------------------------------"
+
 
   watch:
     desc: Watch helper for flux

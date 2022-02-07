@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: hajimari
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: hajimari
+      version: 1.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: hajimari-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/toboshii/hajimari
+      tag: v0.2.0
+    env:
+      TZ: "${TIMEZONE}"
+    hajimari:
+      defaultEnable: false
+      namespaceSelector:
+        matchNames:
+          - home
+          - media
+          - monitoring
+          - networking
+      name: "leeward"
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - host: &host "hajimari.${SECRET_PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      data:
+        enabled: true
+        existingClaim: hajimari-config-v1
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: hajimari-settings
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128M
