@@ -69,7 +69,6 @@
       ansible.builtin.copy:
         src: "{{ repo_abs_path.stdout }}/provision/kubeconfig"
         dest: "/home/linked/.kube/clusters/ctrl"
-        flat: true
       when:
         - k3s_control_node is defined
         - k3s_control_node
