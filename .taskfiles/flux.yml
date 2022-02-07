@@ -28,8 +28,9 @@ tasks:
   status:
     desc: Status of flux system
     cmds:
-      - task flux:sync-status && echo "---------------------------------------------"
-      - task flux:helm-status && echo "---------------------------------------------"
+      - git log -n1 && echo
+      - task flux:sync-status && echo
+      - task flux:helm-status && echo
 
 
   watch:
