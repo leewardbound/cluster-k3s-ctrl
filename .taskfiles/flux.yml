@@ -14,3 +14,13 @@ tasks:
       - flux check --pre
       - kubectl apply --kustomize=./cluster/base/flux-system || kubectl apply --kustomize=./cluster/base/flux-system
       - cat $SOPS_AGE_KEY_FILE | kubectl -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
+
+  status:
+    desc: Initialize Flux Base (may have errors due to CRD race conditions, but should re-attempt once)
+    cmds:
+      - kubectl get kustomization -n flux-system
+
+  watch:
+    desc: Watch helper for flux
+    cmds:
+      - watch task flux:status
