@@ -5,3 +5,4 @@ resources:
   - traefik
   - kube-prometheus-stack
   - external-snapshotter
+  - external-dns

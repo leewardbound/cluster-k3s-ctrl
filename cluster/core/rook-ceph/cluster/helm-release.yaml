@@ -32,7 +32,7 @@ spec:
         annotations:
           kubernetes.io/ingress.class: "nginx"
         host:
-          name: &host "rook.${SECRET_DOMAIN}"
+          name: &host "rook.${SECRET_PRIVATE_DOMAIN}"
           path: "/"
         tls:
           - hosts:
