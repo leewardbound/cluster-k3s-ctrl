@@ -2,12 +2,16 @@
 version: "3"
 
 tasks:
-  unlock-cluster:
-    desc: Unlock the cluster/base/cluster-secrets.sops.yaml
+  unlock:
+    desc: Decrypt the sops files
     cmds:
-      - sops --decrypt --in-place cluster/base/cluster-secrets.sops.yaml
+      - grep -rlw cluster/**/*.sops.yaml -e '^sops:' | grep {{.FN}} | xargs -rt -n1 sops --decrypt --in-place
+    vars:
+      FN: "."
 
-  lock-cluster:
-    desc: Unlock the cluster/base/cluster-secrets.sops.yaml
+  lock:
+    desc: Encrypt the sops files
     cmds:
-      - sops --encrypt --in-place cluster/base/cluster-secrets.sops.yaml
+      - grep -rLw cluster/**/*.sops.yaml -e '^sops:' | grep {{.FN}} | xargs -rt -n1 sops --encrypt --in-place
+    vars:
+      FN: "."
