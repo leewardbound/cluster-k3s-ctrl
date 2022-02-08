@@ -4,6 +4,7 @@ resources:
   - rook-ceph
   - kube-system
   - system-upgrade
+  - cert-manager
   - default
   - networking
   - home
