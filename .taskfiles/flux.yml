@@ -37,3 +37,9 @@ tasks:
     desc: Watch helper for flux
     cmds:
       - watch task flux:status
+
+  deploy:
+    desc: Push and sync repository on main/ branch
+    cmds:
+      - git push -u origin main && sleep 3
+      - flux reconcile source git flux-system
