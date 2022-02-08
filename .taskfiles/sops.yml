@@ -1,0 +1,13 @@
+---
+version: "3"
+
+tasks:
+  unlock-cluster:
+    desc: Unlock the cluster/base/cluster-secrets.sops.yaml
+    cmds:
+      - sops --decrypt --in-place cluster/base/cluster-secrets.sops.yaml
+
+  lock-cluster:
+    desc: Unlock the cluster/base/cluster-secrets.sops.yaml
+    cmds:
+      - sops --encrypt --in-place cluster/base/cluster-secrets.sops.yaml

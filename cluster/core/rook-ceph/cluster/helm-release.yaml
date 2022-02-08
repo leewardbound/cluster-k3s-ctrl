@@ -31,15 +31,14 @@ spec:
       dashboard:
         ingressClassName: nginx
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
           kubernetes.io/ingress.class: "nginx"
         host:
-          name: &host "rook.${SECRET_PUBLIC_DOMAIN}"
+          name: &host "rook.${SECRET_PRIVATE_DOMAIN}"
           path: "/"
         tls:
           - hosts:
               - *host
-            secretName: tls-rook-public
+            secretName: tls-rook-private
     cephClusterSpec:
       placement:
         all:
