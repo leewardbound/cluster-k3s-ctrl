@@ -74,7 +74,7 @@ spec:
         pathType: Prefix
         ingressClassName: "nginx-private"
         annotations:
-          hajimari.io/enable: false
+          hajimari.io/enable: "false"
         hosts:
           - &host "alert-manager.${SECRET_PRIVATE_DOMAIN}"
         tls:
@@ -145,7 +145,7 @@ spec:
         pathType: Prefix
         ingressClassName: "nginx-private"
         annotations:
-          hajimari.io/enable: false
+          hajimari.io/enable: "false"
         hosts:
           - &host "prometheus.${SECRET_PRIVATE_DOMAIN}"
         tls:
