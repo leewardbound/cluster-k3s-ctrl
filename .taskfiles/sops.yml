@@ -9,12 +9,12 @@ tasks:
   unlock:
     desc: Decrypt the sops files
     cmds:
-      - find {{.ROOT}} -name "*.sops.*" | grep -v "/." | xargs -r grep -lw -e '^sops:' | grep {{.FN}} | xargs -rt -n1 sops --decrypt --in-place
+      - find {{.ROOT}} -name "*.sops.*" | grep -v "/\." | xargs -r grep -lw -e '^sops:' | grep {{.FN}} | xargs -rt -n1 sops --decrypt --in-place
 
   lock:
     desc: Encrypt the sops files
     cmds:
-      - find {{.ROOT}} -name "*.sops.*" | grep -v "/." | xargs -r grep -Lw -e '^sops:' | grep {{.FN}} | xargs -rt -n1 sops --encrypt --in-place
+      - find {{.ROOT}} -name "*.sops.*" | grep -v "/\." | xargs -r grep -Lw -e '^sops:' | grep {{.FN}} | xargs -rt -n1 sops --encrypt --in-place
 
   lock:all:
     desc: Encrypt the sops files
