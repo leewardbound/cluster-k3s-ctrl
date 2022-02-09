@@ -35,7 +35,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: nginx-private
         hosts:
           - host: &host "hajimari.${SECRET_PRIVATE_DOMAIN}"
             paths:

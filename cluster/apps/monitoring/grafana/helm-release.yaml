@@ -103,9 +103,9 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: "nginx"
+      ingressClassName: "nginx-private"
       hosts:
-        - &host "grafana.${SECRET_PUBLIC_DOMAIN}"
+        - &host "grafana.${SECRET_PRIVATE_DOMAIN}"
       tls:
         - hosts:
             - *host
