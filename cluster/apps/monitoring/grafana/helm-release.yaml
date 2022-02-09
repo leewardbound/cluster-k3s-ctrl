@@ -104,8 +104,6 @@ spec:
     ingress:
       enabled: true
       ingressClassName: "nginx-private"
-      annotations:
-        hajimari.io/enable: true
       hosts:
         - &host "grafana.${SECRET_PRIVATE_DOMAIN}"
       tls:
