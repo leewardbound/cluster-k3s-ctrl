@@ -19,6 +19,8 @@ spec:
     createNamespace: true
   values:
     ingressClass: nginx-private
+    ingressClassResource:
+      name: nginx-private
     controller:
       replicaCount: 3
       extraEnvs:
