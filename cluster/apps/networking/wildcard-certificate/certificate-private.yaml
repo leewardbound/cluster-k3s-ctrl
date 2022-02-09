@@ -2,7 +2,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "${SECRET_PRIVATE_DOMAIN/./-/g}"
+  name: "${SECRET_PRIVATE_DOMAIN/./-}"
   namespace: networking
 spec:
   secretTemplate:
