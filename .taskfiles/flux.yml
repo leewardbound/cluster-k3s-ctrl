@@ -32,7 +32,6 @@ tasks:
       - task flux:sync-status && echo
       - task flux:helm-status && echo
 
-
   watch:
     desc: Watch helper for flux
     cmds:
@@ -43,3 +42,8 @@ tasks:
     cmds:
       - git push -u origin main
       - flux reconcile source git flux-system
+
+  get-chart:
+    desc: Get chart health
+    cmds:
+      - kubectl get helmrelease -n $(kubectl get helmrelease -A | grep {{.CHART}} | awk '{print $1}') {{.CHART}} -oyaml
