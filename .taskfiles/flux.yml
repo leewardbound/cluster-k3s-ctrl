@@ -40,6 +40,7 @@ tasks:
   deploy:
     desc: Push and sync repository on main/ branch
     cmds:
+      - git pull
       - git push -u origin main
       - flux reconcile source git flux-system
 
