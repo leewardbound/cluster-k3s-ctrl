@@ -18,10 +18,11 @@ spec:
   install:
     createNamespace: true
   values:
-    ingressClass: nginx-public
-    ingressClassResource:
-      name: nginx-public
     controller:
+      ingressClass: nginx-public
+      ingressClassResource:
+        name: nginx-public
+        default: false
       replicaCount: 3
       extraEnvs:
         - name: TZ
@@ -32,8 +33,6 @@ spec:
         externalTrafficPolicy: Local
       publishService:
         enabled: true
-      ingressClassResource:
-        default: true
       config:
         client-header-timeout: 120
         client-body-buffer-size: "100M"
