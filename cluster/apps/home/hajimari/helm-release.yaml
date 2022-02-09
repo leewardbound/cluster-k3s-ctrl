@@ -32,10 +32,13 @@ spec:
           - media
           - monitoring
           - networking
+          - rook-ceph
     ingress:
       main:
         enabled: true
         ingressClassName: nginx-private
+        annotations:
+          hajimari.io/enable: "false"
         hosts:
           - host: &host "hajimari.${SECRET_PRIVATE_DOMAIN}"
             paths:
