@@ -24,7 +24,7 @@ spec:
     env:
       TZ: "${TIMEZONE}"
     hajimari:
-      defaultEnable: false
+      defaultEnable: true
       namespaceSelector:
         matchNames:
           - home
