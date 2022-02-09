@@ -33,6 +33,7 @@ spec:
           - monitoring
           - networking
           - rook-ceph
+          - kasten-io
     ingress:
       main:
         enabled: true
