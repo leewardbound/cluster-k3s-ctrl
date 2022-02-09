@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-nginx
+  name: ingress-nginx-private
   namespace: networking
 spec:
   interval: 5m
@@ -18,6 +18,7 @@ spec:
   install:
     createNamespace: true
   values:
+    ingressClass: nginx-private
     controller:
       replicaCount: 3
       extraEnvs:
@@ -25,7 +26,7 @@ spec:
           value: "${TIMEZONE}"
       service:
         externalIPs:
-          - "${SVC_NGINX_ADDR}"
+          - "${SVC_NGINX_PRIVATE_ADDR}"
         externalTrafficPolicy: Local
       publishService:
         enabled: true
@@ -55,7 +56,7 @@ spec:
         prometheusRule:
           enabled: false
       extraArgs:
-        default-ssl-certificate: "networking/${SECRET_PUBLIC_DOMAIN/./-}-tls"
+        default-ssl-certificate: "networking/${SECRET_PRIVATE_DOMAIN/./-}-tls"
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
@@ -68,8 +69,6 @@ spec:
           operator: Exists
         - effect: NoExecute
           operator: Exists
-      podAnnotations:
-        configmap.reloader.stakater.com/reload: "cloudflare-proxied-networks"
       resources:
         requests:
           memory: 250Mi
@@ -86,10 +85,3 @@ spec:
           value: ghost
         - name: SHOW_DETAILS
           value: "false"
-  valuesFrom:
-    # Cloudflare Networks
-    # https://www.cloudflare.com/ips/
-    - kind: ConfigMap
-      name: cloudflare-proxied-networks
-      valuesKey: cloudflare-proxied-networks.txt
-      targetPath: controller.config.proxy-real-ip-cidr

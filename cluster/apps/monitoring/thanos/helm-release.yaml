@@ -31,9 +31,9 @@ spec:
       ingress:
         enabled: true
         hostname: "thanos.${SECRET_PUBLIC_DOMAIN}"
-        ingressClassName: "nginx"
+        ingressClassName: "nginx-private"
         tls: true
-    existingObjstoreSecret: thanos-objstore
+    #existingObjstoreSecret: thanos-objstore
     queryFrontend:
       enabled: false
     bucketweb:
