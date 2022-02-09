@@ -72,7 +72,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "nginx"
+        ingressClassName: "nginx-private"
         hosts:
           - &host "alert-manager.${SECRET_PRIVATE_DOMAIN}"
         tls:
@@ -141,7 +141,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "nginx"
+        ingressClassName: "nginx-private"
         hosts:
           - &host "prometheus.${SECRET_PRIVATE_DOMAIN}"
         tls:
