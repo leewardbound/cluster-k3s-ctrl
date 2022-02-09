@@ -25,6 +25,13 @@ spec:
       TZ: "${TIMEZONE}"
     hajimari:
       name: "leeward"
+      defaultEnable: false
+      namespaceSelector:
+        matchNames:
+          - home
+          - media
+          - monitoring
+          - networking
     ingress:
       main:
         enabled: true

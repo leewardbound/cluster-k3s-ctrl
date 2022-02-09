@@ -104,6 +104,8 @@ spec:
     ingress:
       enabled: true
       ingressClassName: "nginx-private"
+      annotations:
+        hamijari.io/enable: "true"
       hosts:
         - &host "grafana.${SECRET_PRIVATE_DOMAIN}"
       tls:
