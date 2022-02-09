@@ -47,6 +47,12 @@ tasks:
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-nuke.yml"
 
+  playbook:nuke-rook-ceph:
+    desc: Uninstall Kubernetes on the nodes
+    dir: provision/ansible
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/nuke-rook-ceph.yml"
+
   adhoc:ping:
     desc: Ping all the hosts
     dir: provision/ansible
