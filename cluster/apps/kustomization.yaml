@@ -3,8 +3,10 @@ kind: Kustomization
 resources:
   - rook-ceph
   - kube-system
+  - calico-system
   - system-upgrade
   - cert-manager
+  - kasten-io
   - default
   - networking
   - monitoring
