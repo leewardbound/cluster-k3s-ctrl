@@ -43,7 +43,7 @@ tasks:
     cmds:
       - git pull
       - git push -u origin main
-      - flux reconcile source git flux-system
+      - task -s flux:sync
 
   get-chart:
     desc: Get chart health
