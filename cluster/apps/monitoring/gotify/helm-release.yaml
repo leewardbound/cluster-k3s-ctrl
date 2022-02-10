@@ -8,10 +8,10 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: /charts/kah-common/
+      chart: gotify
       sourceRef:
         kind: GitRepository
-        name: flux-system
+        name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
   install:
