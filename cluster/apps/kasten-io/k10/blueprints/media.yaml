@@ -32,6 +32,9 @@ actions:
                 persistentVolumeClaim:
                   claimName: k10-backups
           command:
+            - "sleep"
+            - "600"
+            - "&&"
             - "rclone"
             - "-v"
             - "--config"
@@ -39,10 +42,9 @@ actions:
             - "sync"
             - "--ignore-errors"
             - "--fast-list"
-            - "--b2-hard-delete"
             - "--transfers"
             - "24"
             - "--checkers"
             - "24"
             - "/mnt/k10-backups/media"
-            - "b2:k10-media-6bp9UzZu/"
+            - "boundcorp-backups-eu-north-1:home/"
