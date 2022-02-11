@@ -21,8 +21,8 @@ actions:
                   - name: TZ
                     value: "${TIMEZONE}"
                 volumeMounts:
-                  #- name: rclone-conf
-                    #mountPath: /config
+                  - name: rclone-conf
+                    mountPath: /config
                   - name: k10-backups
                     mountPath: /mnt/k10-backups
             volumes:
