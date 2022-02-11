@@ -11,7 +11,8 @@ actions:
         name: hookPhase
         args:
           namespace: kasten-io
-          image: ghcr.io/k8s-at-home/rclone:v1.57.0
+          #image: ghcr.io/k8s-at-home/rclone:v1.57.0
+          image: gcr.io/google-containers/ubuntu-slim:0.14
           podOverride:
             containers:
               - name: container
@@ -32,6 +33,9 @@ actions:
                 persistentVolumeClaim:
                   claimName: k10-backups
           command:
+            - "sleep"
+            - "600"
+            - "&&"
             - "rclone"
             - "-v"
             - "--config"
