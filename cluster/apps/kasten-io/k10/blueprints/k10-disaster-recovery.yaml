@@ -44,4 +44,4 @@ actions:
             - "--checkers"
             - "24"
             - "/mnt/k10-backups/k10-disaster-recovery"
-            - "boundcorp-backups-eu-north-1:home/"
+            - "s3-eu-north-1:boundcorp-backups-eu-north-1/k10-disaster-recovery/"
