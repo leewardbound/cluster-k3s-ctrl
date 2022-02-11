@@ -45,6 +45,3 @@ actions:
             - "24"
             - "/mnt/k10-backups/media"
             - "s3-eu-north-1:boundcorp-backups-eu-north-1/media/"
-            - "||"
-            - "sleep"
-            - "600"
