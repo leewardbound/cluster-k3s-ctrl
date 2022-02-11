@@ -29,8 +29,8 @@ spec:
               value: "true"
             # This breaks any node that has an interface different than eno1
             # but it seems necessary for initial cluster bootstrap
-            #- name: vip_interface
-            #  value: "eno1"
+            - name: vip_interface
+              value: "eno1"
             - name: port
               value: "6443"
             - name: vip_cidr
