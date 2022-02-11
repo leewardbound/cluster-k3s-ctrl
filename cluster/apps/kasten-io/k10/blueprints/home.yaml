@@ -43,5 +43,5 @@ actions:
             - "24"
             - "--checkers"
             - "24"
-            - "/mnt/k10-backups/home"
-            - "s3-eu-north-1:boundcorp-backups-eu-north-1/home/"
+            - "/mnt/k10-backups/"
+            - "s3-eu-north-1:boundcorp-backups-eu-north-1/"
