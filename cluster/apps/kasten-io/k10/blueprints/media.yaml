@@ -32,10 +32,6 @@ actions:
                 persistentVolumeClaim:
                   claimName: k10-backups
           command:
-            - "sleep"
-            - "600"
-            - "&&"
-            - "rclone"
             - "-v"
             - "--config"
             - "/config/rclone.conf"
