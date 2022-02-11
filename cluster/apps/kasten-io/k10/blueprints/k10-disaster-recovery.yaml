@@ -2,7 +2,7 @@
 apiVersion: cr.kanister.io/v1alpha1
 kind: Blueprint
 metadata:
-  name: k10-disaster-recovery
+  name: k10-backup-to-s3
   namespace: kasten-io
 actions:
   post-export:
@@ -43,5 +43,5 @@ actions:
             - "24"
             - "--checkers"
             - "24"
-            - "/mnt/k10-backups/k10-disaster-recovery"
-            - "s3-eu-north-1:boundcorp-backups-eu-north-1/k10-disaster-recovery/"
+            - "/mnt/k10-backups/"
+            - "s3-eu-north-1:boundcorp-backups-eu-north-1/"
