@@ -15,14 +15,9 @@ spec:
         - name: TZ
           value: "${TIMEZONE}"
       volumeMounts:
-        - name: rclone-conf
-          mountPath: /config
         - name: k10-backups
           mountPath: /mnt/k10-backups
   volumes:
-    - name: rclone-conf
-      secret:
-        secretName: rclone-conf
     - name: k10-backups
       persistentVolumeClaim:
         claimName: k10-backups
