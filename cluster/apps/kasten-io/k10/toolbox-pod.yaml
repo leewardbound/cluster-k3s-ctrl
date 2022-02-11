@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: toolbox-pod
+  namespace: kasten-io
 spec:
   containers:
     - name: container
