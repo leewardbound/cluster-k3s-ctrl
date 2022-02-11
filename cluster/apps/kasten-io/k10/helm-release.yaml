@@ -39,7 +39,7 @@ spec:
     clusterName: k8s
     ingress:
       create: true
-      class: nginx-private
+      ingressClassName: nginx-private
       host: &host "k10.${SECRET_PRIVATE_DOMAIN}"
       urlPath: k10
       hosts:
