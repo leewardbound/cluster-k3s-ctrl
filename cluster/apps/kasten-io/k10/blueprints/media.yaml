@@ -32,6 +32,7 @@ actions:
                 persistentVolumeClaim:
                   claimName: k10-backups
           command:
+            - "rclone"
             - "-v"
             - "--config"
             - "/config/rclone.conf"
