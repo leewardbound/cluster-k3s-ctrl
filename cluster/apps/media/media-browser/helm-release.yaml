@@ -35,9 +35,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "nginx-private"
         hosts:
-          - host: &host "media-browser.${SECRET_PUBLIC_DOMAIN}"
+          - host: &host "media-browser.${SECRET_PRIVATE_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
