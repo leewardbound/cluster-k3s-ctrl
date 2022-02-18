@@ -28,6 +28,7 @@ spec:
       defaultEnable: true
       namespaceSelector:
         matchNames:
+          - authentik
           - home
           - media
           - monitoring
