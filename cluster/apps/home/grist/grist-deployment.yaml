@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grist
+  namespace: home
+spec:
+  selector:
+    matchLabels:
+      app: grist
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grist
+    spec:
+      containers:
+        - name: grist
+          image: gristlabs/grist
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: "${TIMEZONE}"
+            - name: GRIST_SINGLE_ORG
+              value: "docs"
+            - name: APP_DOC_URL
+              value: "https://tables.${SECRET_PRIVATE_DOMAIN}"
+            - name: APP_HOME_URL
+              value: "https://tables.${SECRET_PRIVATE_DOMAIN}"
+            - name: GRIST_DEFAULT_EMAIL
+              value: "${SECRET_CLOUDFLARE_EMAIL}"
+          volumeMounts:
+            - name: grist-storage
+              mountPath: /persist
+      volumes:
+        - name: grist-storage
+          persistentVolumeClaim:
+            claimName: grist-storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grist
+  namespace: home
+  labels:
+    name: grist
+spec:
+  type: ClusterIP
+  ports:
+    - name: grist
+      port: 8484
+  selector:
+    app: grist
