@@ -24,6 +24,20 @@ spec:
       GF_PANELS_DISABLE_SANITIZE_HTML: true
       GF_LOG_FILTERS: rendering:debug
       GF_DATE_FORMATS_FULL_DATE: "MMM Do, YYYY hh:mm:ss a"
+      GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
+      GF_AUTH_GENERIC_OAUTH_NAME: "BoundCorp.net"
+      GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
+      GF_AUTH_GENERIC_OAUTH_AUTH_URL: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/authorize/
+      GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/token/
+      GF_AUTH_GENERIC_OAUTH_API_URL: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/userinfo/
+      GF_AUTH_SIGNOUT_REDIRECT_URL: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/grafana/end-session/
+      GF_AUTH_GENERIC_OAUTH_CLIENT_ID: "${SECRET_GRAFANA_OIDC_CLIENT_ID}"
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: "${SECRET_GRAFANA_OIDC_CLIENT_SECRET}"
+      # Optionally enable auto-login (bypasses Grafana login screen)
+      GF_AUTH_OAUTH_AUTO_LOGIN: "true"
+      # Optionally map user groups to Grafana roles
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
+
     adminPassword: "${SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
       server:
@@ -41,17 +55,6 @@ spec:
         url: https://grafana.net
       auth.basic:
         disable_login_form: false
-      auth.generic_oauth:
-        name: BoundCorp.net
-        icon: signin
-        enabled: "true"
-        empty_scopes: "true"
-        allow_sign_up: "true"
-        auth_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/authorize/
-        token_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/token/
-        api_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/userinfo
-        client_id: "${SECRET_GRAFANA_OIDC_CLIENT_ID}"
-        client_secret: "${SECRET_GRAFANA_OIDC_CLIENT_SECRET}"
 
     dashboardProviders:
       dashboardproviders.yaml:
