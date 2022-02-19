@@ -46,9 +46,10 @@ spec:
         icon: signin
         enabled: "true"
         empty_scopes: "true"
+        allow_sign_up: "true"
         auth_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/authorize/
         token_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/token/
-        api_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/userinfo/
+        api_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/userinfo
         client_id: "${SECRET_GRAFANA_OIDC_CLIENT_ID}"
         client_secret: "${SECRET_GRAFANA_OIDC_CLIENT_SECRET}"
 
