@@ -45,9 +45,12 @@ spec:
         name: Authentik
         icon: signin
         enabled: "true"
+        auth_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/authorize/
+        token_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/token/
+        api_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/userinfo/
         client_id: "${SECRET_GRAFANA_OIDC_CLIENT_ID}"
         client_secret: "${SECRET_GRAFANA_OIDC_CLIENT_SECRET}"
-        allowed_domains: "boundcorp.net"
+        allowed_domains: "${SECRET_PUBLIC_DOMAIN}"
 
     dashboardProviders:
       dashboardproviders.yaml:
