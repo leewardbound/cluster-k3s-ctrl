@@ -120,7 +120,7 @@ spec:
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
         external-dns/is-public: "true"
       hosts:
-        - &host "grafana.${SECRET_PRIVATE_DOMAIN}"
+        - &host "grafana.${SECRET_PUBLIC_DOMAIN}"
       tls:
         - hosts:
             - *host
