@@ -17,9 +17,6 @@ spec:
       interval: 5m
   values:
     authentik:
-      secret_key: "${SECRET_AUTHENTIK_SEED}"
-      # This sends anonymous usage-data, stack traces on errors and
-      # performance data to sentry.beryju.org, and is fully opt-in
       email:
         from: "${SECRET_SES_SMTP_FROM_EMAIL}"
         host: "${SECRET_SES_SMTP_HOST}"
@@ -27,6 +24,7 @@ spec:
         username: "${SECRET_SES_ACCESS_KEY}"
         password: "${SECRET_SES_SECRET_KEY}"
         use_tls: true
+      secret_key: "${SECRET_AUTHENTIK_SEED}"
       error_reporting:
         enabled: true
       postgresql:
