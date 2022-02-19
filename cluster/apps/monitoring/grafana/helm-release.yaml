@@ -42,15 +42,15 @@ spec:
       auth.basic:
         disable_login_form: false
       auth.generic_oauth:
-        name: Authentik
+        name: BoundCorp.net
         icon: signin
         enabled: "true"
+        empty_scopes: "true"
         auth_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/authorize/
         token_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/token/
         api_url: https://auth.${SECRET_PUBLIC_DOMAIN}/application/o/userinfo/
         client_id: "${SECRET_GRAFANA_OIDC_CLIENT_ID}"
         client_secret: "${SECRET_GRAFANA_OIDC_CLIENT_SECRET}"
-        allowed_domains: "${SECRET_PUBLIC_DOMAIN}"
 
     dashboardProviders:
       dashboardproviders.yaml:
