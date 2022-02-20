@@ -25,6 +25,8 @@ spec:
               value: "docs"
             - name: APP_DOC_URL
               value: "https://tables.${SECRET_PRIVATE_DOMAIN}"
+            - name: APP_DOC_INTERNAL_URL
+              value: "http://grist.home.svc.cluster.local:8484"
             - name: APP_HOME_URL
               value: "https://tables.${SECRET_PRIVATE_DOMAIN}"
             - name: GRIST_DOMAIN
