@@ -24,4 +24,4 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: rook-block
+        storageClass: ceph-block
