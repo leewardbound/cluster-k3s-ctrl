@@ -27,6 +27,10 @@ spec:
               value: "https://tables.${SECRET_PRIVATE_DOMAIN}"
             - name: APP_HOME_URL
               value: "https://tables.${SECRET_PRIVATE_DOMAIN}"
+            - name: GRIST_DOMAIN
+              value: "${SECRET_PRIVATE_DOMAIN}"
+            - name: DEBUG
+              value: "true"
             - name: GRIST_DEFAULT_EMAIL
               value: "${SECRET_CLOUDFLARE_EMAIL}"
           volumeMounts:

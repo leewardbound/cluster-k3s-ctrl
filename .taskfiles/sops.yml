@@ -2,7 +2,7 @@
 version: "3"
 
 vars:
-  ROOT: '{{.ROOT | default "./cluster"}}'
+  ROOT: '{{.ROOT | default "./"}}'
   FN: '{{.FN | default "."}}'
 
 tasks:
@@ -15,8 +15,3 @@ tasks:
     desc: Encrypt the sops files
     cmds:
       - find {{.ROOT}} -name "*.sops.*" | grep -v "/\." | xargs -r grep -Lw -e '^sops:' | grep {{.FN}} | xargs -rt -n1 sops --encrypt --in-place
-
-  lock:all:
-    desc: Encrypt the sops files
-    cmds:
-      - task sops:lock ROOT=.
