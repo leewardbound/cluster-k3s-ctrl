@@ -66,14 +66,6 @@ spec:
         mountPath: /dev/shm
     podAnnotations:
       configmap.reloader.stakater.com/reload: "frigate-config"
-    resources:
-      requests:
-        gpu.intel.com/i915: 1
-        memory: 100Mi
-        cpu: 500m
-      limits:
-        gpu.intel.com/i915: 1
-        memory: 3000Mi
     config: |
       mqtt:
         host: mosquitto
