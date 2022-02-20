@@ -20,6 +20,13 @@ spec:
   values:
     env:
       TZ: "${TIMEZONE}"
+    service:
+      dns-tcp:
+        externalIPs: ["${SVC_ADGUARD_DNS_ADDR}"]
+        type: LoadBalancer
+      dns-udp:
+        externalIPs: ["${SVC_ADGUARD_DNS_ADDR}"]
+        type: LoadBalancer
 
     persistence:
       config:
