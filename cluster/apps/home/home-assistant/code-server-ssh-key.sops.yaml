@@ -1,0 +1,29 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    name: code-server
+    namespace: home
+stringData:
+    id_rsa: ENC[AES256_GCM,data:rR7I0V0=,iv:Cl1r01841ExxEqqctjpd3w1UZK8cCuh5LCEQznGwQYw=,tag:66wFJnesoRadnELwiXmASQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age168rnvw24yn8722y6lnlax5rzvwpxqunaxdjef9vwjpkay8gyt3ssj4lqgc
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOTGIzS2czYkhXQzVBejFE
+            TnJ5dm56RzRWdWppRW03NlQzTVk4OEg5eTAwCndudW1GUEM1UEN4NTJBaUhDVnRM
+            SXhYRTI2OGtzYjlEUVlMNkJzdW1kRVkKLS0tIEp1L0YwWjQ2MUFPR1A0ekQ4MEVk
+            RURSa2paNHBBVnVSdDdDOVBFRmdWc0EKRxcoYDat6zgaaINqmKzjCipf8ZVU0Clv
+            kK9z6EFseU9oTgUP2KN+2wD4LEjbfyJMmOMigUnTQagIUQIxRolmVg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-02-21T18:42:29Z"
+    mac: ENC[AES256_GCM,data:NHqBnr/gtoGMqb7rpkvIz84Gfqcjb0gRgYQ4DmOD55t009qCmgmPGAUm4MxylY0iy+d15HaSCrwWdVxIitD2wthoLVonjc4j90F5XWjCijMXFN4AdRcnRg2JHeemOaRd3F4tlvOy12ALuEAE2k31fjQFoU7PROetTD6gWC+FExk=,iv:7ZpXJRLR6dRLfuK3FM2dxfcWrhCJA1iOahRN9cYIKLs=,tag:msBEcpMak3iVHxk9Zyjidg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1

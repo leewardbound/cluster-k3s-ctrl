@@ -1,0 +1,32 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: home-assistant
+    namespace: home
+stringData:
+    HASS_ELEVATION: ENC[AES256_GCM,data:YrdwdQ==,iv:x7FHbcjLUytPxptVAItGfdN6s3NRE11RUh09qdgSMD0=,tag:ExqpCGFQ+XdxTcitUZJoiA==,type:int]
+    HASS_LATITUDE: ENC[AES256_GCM,data:KWAfcLr51abGbw==,iv:euNZ5cfeWT1TS/n31MBny3S0ZNevKxKspr4RYU2OAM0=,tag:iQLi3ssJUnuih/SlR0ZHaw==,type:float]
+    HASS_LONGITUDE: ENC[AES256_GCM,data:4A2LYTPJoSDjfYXz,iv:o5DDo2f2gxB7Fv7Vy3qt4S3JVouKPi8f9VqPja1BFJM=,tag:2XgNDnBESZReoL2jjblX5w==,type:float]
+    HASS_MQTT_PASSWORD: ENC[AES256_GCM,data:WRjMdQdkjYQCMqZwTpn78v1ijQ==,iv:xzH993F+LtzyuOMgtgTWt3wvVEu9L+dhfbUEfErMg2E=,tag:7cwkG6l7VrxSKtX1fqZkRA==,type:str]
+    HASS_MQTT_USERNAME: ENC[AES256_GCM,data:k7OrRw7vWUc=,iv:P/T/MwIqCUMk1ApSw/wrrPAocdVoJgKVV2vYh3IBekQ=,tag:1JvAHAbMYgEDfJuHtkfYXg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age168rnvw24yn8722y6lnlax5rzvwpxqunaxdjef9vwjpkay8gyt3ssj4lqgc
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNYzJtZmZTOXBvOGdjc0FU
+            UUJSNng1Q0dsR0diNm5NMW8raXZISm1JQVdNCk5LTlIyNk02YjNReEwwaWZvclJL
+            OHhRcmhEMWxJKy9nenVaam91TjJxZWcKLS0tIDZlejVVVS9JN2tRY0JsZEhid0h1
+            eTc1VU1SMk1JT2UwTDlsUHl2bHZjVTgKCqdDVGQnzsiIfwhee7KjsMK3g1PbiyhZ
+            EvzDDCSsp8e7c/avW6cj0W+Nqldbtts5CtynIQSpw84bS8Pe0jQLvA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-02-21T18:42:29Z"
+    mac: ENC[AES256_GCM,data:UPEvurBriM2nnV0C+uiF+Y9CfzKgF+rHZKm/bzJYaODnQrTmyB7PGkT7wvyUK8NJ7U/dSFEAJqxXyqFaSKvphTEa4IGyphhOyl9ajqhjtfST8epj6mcJyc6UyApbvwVocsqCmVu4kefrd2G3FCRt1InSxekuv89Y6mn0T4ZUaaM=,iv:xVQY0Lm3ot20UeISpZRUUrFN5YXh7r4h3bVh26h2CI0=,tag:QMRAAF3quKieZFv5jpfQOg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
