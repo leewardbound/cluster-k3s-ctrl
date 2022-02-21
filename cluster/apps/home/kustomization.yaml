@@ -6,3 +6,4 @@ resources:
   - grist
   - mosquitto
   - frigate
+  - home-assistant
