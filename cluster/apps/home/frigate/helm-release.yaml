@@ -100,7 +100,7 @@ spec:
           detect:
             width: 1024
             height: 576
-            fps: 10
+            fps: 1
           record:
             enabled: True
             retain_days: 7
