@@ -85,4 +85,32 @@ spec:
             threshold: 0.7
 
       # Cameras
-      cameras: []
+      cameras:
+        frigate_backyard:
+          ffmpeg:
+            - path: rtsp://frigate:W8kbSrgi@10.20.30.151/Streaming/Channels/1/
+              roles:
+                - detect
+                - rtmp
+                - record
+          rtmp:
+            enabled: True
+          detect:
+            width: 1024
+            height: 576
+            fps: 10
+          record:
+            enabled: True
+            retain_days: 7
+            events:
+              retain:
+                default: 7
+          snapshots:
+            enabled: True
+            timestamp: False
+            retain:
+              default: 7
+          objects:
+            track:
+              - person
+        # --
