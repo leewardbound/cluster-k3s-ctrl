@@ -88,7 +88,7 @@ spec:
       cameras:
         frigate_backyard:
           ffmpeg:
-            - path: rtsp://frigate:W8kbSrgi@10.20.30.151/Streaming/Channels/1/
+            - path: rtsp://"${SECRET_FRIGATE_CAMERA_AUTH}"@10.20.30.151/Streaming/Channels/1/
               roles:
                 - detect
                 - rtmp
