@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: frigate
-      version: 8.0.0
+      version: 7.1.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/frigate
-      tag: v0.10.0-amd64
+      tag: v0.9.4-amd64
     env:
       TZ: "${TIMEZONE}"
     ingress:
@@ -64,41 +64,74 @@ spec:
         mountPath: /dev/shm
     podAnnotations:
       configmap.reloader.stakater.com/reload: "frigate-config"
-    config: |
-      mqtt:
-        host: mosquitto
-        topic_prefix: frigate
-        user: "${SECRET_MQTT_USERNAME}"
-        password: "${SECRET_MQTT_PASSWORD}"
+    configmap:
+      config:
+        enabled: true
+        data:
+          config.yml: |
+            mqtt:
+              host: mosquitto
+              topic_prefix: frigate
+              user: "${SECRET_MQTT_USERNAME}"
+              password: "${SECRET_MQTT_PASSWORD}"
 
-      database:
-        path: /data/frigate.db
+            database:
+              path: /data/frigate.db
 
-      # Global objects configuration
-      objects:
-        track:
-          - person
-        filters:
-          person:
-            min_area: 2500
-            max_area: 100000
-            threshold: 0.7
+            # Global objects configuration
+            objects:
+              track:
+                - person
+              filters:
+                person:
+                  min_area: 2500
+                  max_area: 100000
+                  threshold: 0.7
 
-      detectors:
-        cpu1:
-          type: cpu
-          num_threads: 3
+            detectors:
+              cpu1:
+                type: cpu
+                num_threads: 3
 
-      # Global ffmpeg configuration
-      ffmpeg:
-        hwaccel_args:
-          - -hwaccel
-          - vaapi
-          - -hwaccel_device
-          - /dev/dri/renderD128
-          - -hwaccel_output_format
-          - yuv420p
+            # Global ffmpeg configuration
+            ffmpeg:
+              hwaccel_args:
+                - -hwaccel
+                - vaapi
+                - -hwaccel_device
+                - /dev/dri/renderD128
+                - -hwaccel_output_format
+                - yuv420p
 
-      # Cameras
-      cameras: []
-        # --
+            # Cameras
+            cameras:
+              # --
+              frigate_backyard:
+                ffmpeg:
+                  inputs:
+                  - path: "rtsp://${SECRET_FRIGATE_CAMERA_AUTH}@10.20.30.151/Streaming/Channels/1/"
+                    roles:
+                      - detect
+                      - rtmp
+                      - record
+                rtmp:
+                  enabled: True
+                detect:
+                  width: 1024
+                  height: 576
+                  fps: 1
+                record:
+                  enabled: True
+                  retain_days: 7
+                  events:
+                    retain:
+                      default: 7
+                snapshots:
+                  enabled: True
+                  timestamp: False
+                  retain:
+                    default: 7
+                objects:
+                  track:
+                    - person
+              # --
