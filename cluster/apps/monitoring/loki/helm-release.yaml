@@ -41,7 +41,7 @@ spec:
         ingestion_burst_size_mb: 24
       storage_config:
         aws:
-          s3: "s3://${SECRET_MINIO_ACCESS_KEY}:${SECRET_MINIO_SECRET_KEY}@bucket-tempdata.${SECRET_PRIVATE_DOMAIN}/loki"
+          s3: "s3://${SECRET_TEMPDATA_ACCESS_KEY}:${SECRET_TEMPDATA_SECRET_KEY}@bucket-tempdata.${SECRET_PRIVATE_DOMAIN}/loki"
           s3forcepathstyle: true
         boltdb_shipper:
           active_index_directory: /data/loki/index
@@ -49,6 +49,12 @@ spec:
           resync_interval: 5s
           shared_store: s3
       ruler:
+        storage:
+          type: s3
+          s3:
+            s3: "https://${SECRET_TEMPDATA_ACCESS_KEY}:${SECRET_TEMPDATA_SECRET_KEY}@bucket-tempdata.${SECRET_PRIVATE_DOMAIN}/loki"
+            s3forcepathstyle: true
+        rule_path: /tmp/scratch
         alertmanager_url: http://prometheus-alertmanager:9093
         ring:
           kvstore:
