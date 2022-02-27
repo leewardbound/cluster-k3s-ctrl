@@ -8,7 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: minio
+      chart: operator
       version: 4.4.10
       sourceRef:
         kind: HelmRepository
