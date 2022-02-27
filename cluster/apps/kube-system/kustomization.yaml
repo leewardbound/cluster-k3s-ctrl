@@ -8,3 +8,4 @@ resources:
   - node-feature-discovery
   - reflector
   - reloader
+  - minio-operator
