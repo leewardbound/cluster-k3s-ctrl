@@ -22,10 +22,7 @@ spec:
       ingress:
         enabled: true
         ingressClassName: nginx-private
-        hosts:
-          - host: &host "minio.${SECRET_PRIVATE_DOMAIN}"
-            paths:
-              - /
+        host: &host "minio.${SECRET_PRIVATE_DOMAIN}"
         tls:
           - hosts:
               - *host
