@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: minio-tenant-monitoring
-  namespace: kube-system
+  namespace: monitoring
 spec:
   interval: 5m
   chart:
@@ -27,5 +27,3 @@ spec:
             storageClassName: ceph-block
         metrics:
           enabled: true
-        buckets:
-          - loki
