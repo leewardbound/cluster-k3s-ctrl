@@ -6,4 +6,3 @@ resources:
   - thanos
   - grafana
   - gotify
-  - minio-tenant-monitoring
