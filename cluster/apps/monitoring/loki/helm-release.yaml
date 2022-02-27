@@ -51,8 +51,7 @@ spec:
       ruler:
         storage:
           type: s3
-          s3:
-            s3: "s3://${SECRET_MINIO_ACCESS_KEY}:${SECRET_MINIO_SECRET_KEY}@bucket-tempdata.${SECRET_PRIVATE_DOMAIN}/loki"
+          s3: "s3://${SECRET_MINIO_ACCESS_KEY}:${SECRET_MINIO_SECRET_KEY}@bucket-tempdata.${SECRET_PRIVATE_DOMAIN}/loki"
         alertmanager_url: http://prometheus-alertmanager:9093
         ring:
           kvstore:
