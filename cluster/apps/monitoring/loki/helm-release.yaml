@@ -50,7 +50,9 @@ spec:
           shared_store: s3
       ruler:
         storage:
-          type: s3
+          type: local
+          local:
+            directory: /rules
           s3:
             s3: "https://${SECRET_TEMPDATA_ACCESS_KEY}:${SECRET_TEMPDATA_SECRET_KEY}@bucket-tempdata.${SECRET_PRIVATE_DOMAIN}/loki"
             s3forcepathstyle: true
