@@ -1,0 +1,53 @@
+#################################################################################################################
+# Create an object store with settings for replication in a production environment. A minimum of 3 hosts with
+# OSDs are required in this example.
+#  kubectl create -f object.yaml
+#################################################################################################################
+
+apiVersion: ceph.rook.io/v1
+kind: CephObjectStore
+metadata:
+  name: bucket-tempdata
+  namespace: rook-ceph # namespace:cluster
+spec:
+  # The pool spec used to create the metadata pools. Must use replication.
+  metadataPool:
+    replicated:
+      size: 1
+      requireSafeReplicaSize: false
+  # The pool spec used to create the data pool. Can use replication or erasure coding.
+  dataPool:
+    replicated:
+      size: 1
+      # Disallow setting pool with replica 1, this could lead to data loss without recovery.
+      # Make sure you're *ABSOLUTELY CERTAIN* that is what you want
+      requireSafeReplicaSize: false
+  preservePoolsOnDelete: false
+  # The gateway service configuration
+  gateway:
+    # A reference to the secret in the rook namespace where the ssl certificate is stored
+    # sslCertificateRef:
+    # A reference to the secret in the rook namespace where the ca bundle is stored
+    # caBundleRef:
+    # The port that RGW pods will listen on (http)
+    port: 80
+    # The port that RGW pods will listen on (https). An ssl certificate is required.
+    # securePort: 443
+    # The number of pods in the rgw deployment
+    instances: 1
+    # The affinity rules to apply to the rgw deployment.
+    placement:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - rook-ceph-rgw
+              # topologyKey: */zone can be used to spread RGW across different AZ
+              # Use <topologyKey: failure-domain.beta.kubernetes.io/zone> in k8s cluster if your cluster is v1.16 or lower
+              # Use <topologyKey: topology.kubernetes.io/zone>  in k8s cluster is v1.17 or upper
+              topologyKey: kubernetes.io/hostname
