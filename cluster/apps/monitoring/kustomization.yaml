@@ -6,3 +6,6 @@ resources:
   - thanos
   - grafana
   - gotify
+  - loki
+  - vector-agent
+  - blackbox-exporter
