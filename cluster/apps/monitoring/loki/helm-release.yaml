@@ -50,10 +50,78 @@ spec:
           shared_store: s3
       ruler:
         storage:
-          type: s3
-          s3: "s3://${SECRET_MINIO_ACCESS_KEY}:${SECRET_MINIO_SECRET_KEY}@bucket-tempdata.${SECRET_PRIVATE_DOMAIN}/loki"
+          type: local
+          local:
+            directory: /rules
+        rule_path: /tmp/scratch
         alertmanager_url: http://prometheus-alertmanager:9093
         ring:
           kvstore:
             store: inmemory
         enable_api: true
+    alerting_groups:
+      #
+      # zigbee2mqtt
+      #
+      - name: zigbee2mqtt
+        rules:
+          - alert: ZigbeeUnableToReachMQTT
+            expr: |
+              sum(count_over_time({app="zigbee2mqtt"} |~ "(?i)not connected to mqtt server"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Zigbee2mqtt is unable to reach MQTT"
+      #
+      # frigate
+      #
+      - name: frigate
+        rules:
+          - alert: FrigateUnableToReachMQTT
+            expr: |
+              sum(count_over_time({app="frigate"} |~ "(?i)unable to connect to mqtt server"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Frigate is unable to reach MQTT"
+      #
+      # *arr
+      #
+      - name: arr
+        rules:
+          - alert: ArrDatabaseIsLocked
+            expr: |
+              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "{{ $labels.app }} is experiencing locked database issues"
+          - alert: ArrDatabaseIsMalformed
+            expr: |
+              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database disk image is malformed"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "{{ $labels.app }} is experiencing malformed database disk image issues"
+      #
+      # home-assistant
+      #
+      - name: home-assistant
+        rules:
+          - alert: HomeAssistantUnableToReachPostgresql
+            expr: |
+              sum by (app) (count_over_time({app="home-assistant"} |~ "(?i)error in database connectivity"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Home Assistant is unable to connect to postgresql"
