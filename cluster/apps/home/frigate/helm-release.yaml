@@ -82,6 +82,8 @@ spec:
             objects:
               track:
                 - person
+                - dog
+                - cat
               filters:
                 person:
                   min_area: 2500
@@ -91,7 +93,7 @@ spec:
             detectors:
               cpu1:
                 type: cpu
-                num_threads: 3
+                num_threads: 1
 
             # Global ffmpeg configuration
             ffmpeg:
@@ -117,8 +119,8 @@ spec:
                 rtmp:
                   enabled: True
                 detect:
-                  width: 1024
-                  height: 576
+                  width: 768
+                  height: 480
                   fps: 1
                 record:
                   enabled: True
@@ -134,4 +136,6 @@ spec:
                 objects:
                   track:
                     - person
+                    - cat
+                    - dog
               # --
