@@ -113,15 +113,10 @@ spec:
                   inputs:
                   - path: "rtsp://${SECRET_FRIGATE_CAMERA_AUTH}@10.20.30.151/Streaming/Channels/1/"
                     roles:
-                      - detect
                       - rtmp
                       - record
                 rtmp:
                   enabled: True
-                detect:
-                  width: 768
-                  height: 480
-                  fps: 1
                 record:
                   enabled: True
                   retain_days: 7
