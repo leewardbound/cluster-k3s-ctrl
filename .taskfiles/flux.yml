@@ -14,6 +14,7 @@ tasks:
     cmds:
       - flux check --pre
       - kubectl apply --kustomize=./cluster/base/flux-system || kubectl apply --kustomize=./cluster/base/flux-system
+      - kubectl taint node enterprise k3s-controlplane=true:NoSchedule --overwrite=true
       - cat $SOPS_AGE_KEY_FILE | kubectl -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
 
   sync-status:
