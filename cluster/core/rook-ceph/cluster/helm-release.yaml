@@ -103,6 +103,7 @@ spec:
             activeStandby: true
           metadataPool:
             deviceClass: hdd
+            failureDomain: host
             replicated:
               size: 2
               requireSafeReplicaSize: true
