@@ -31,7 +31,6 @@ spec:
       dashboard:
         ingressClassName: nginx-private
         annotations:
-          kubernetes.io/ingress.class: "nginx"
           hajimari.io/enable: "true"
         host:
           name: &host "rook.${SECRET_PRIVATE_DOMAIN}"
