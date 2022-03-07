@@ -5,5 +5,4 @@ resources:
   - dashboard
   - rook-direct-mount
   - snapshot-controller
-  - bucket-tempdata
   - volume-snapshot-class.yaml
