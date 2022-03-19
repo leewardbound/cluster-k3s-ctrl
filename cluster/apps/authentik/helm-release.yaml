@@ -50,6 +50,7 @@ spec:
       enabled: true
       postgresqlPassword: "${SECRET_AUTHENTIK_DB_PASSWORD}"
       persistence:
+        enabled: true
         storageClass: ceph-block
 
     redis:
