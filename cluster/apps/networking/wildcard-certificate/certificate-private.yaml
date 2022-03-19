@@ -17,7 +17,6 @@ spec:
     kind: ClusterIssuer
   commonName: "${SECRET_PRIVATE_DOMAIN}"
   dnsNames:
-    - "${SECRET_PRIVATE_DOMAIN}"
     - "*.${SECRET_PRIVATE_DOMAIN}"
-    - "${SECRET_PUBLIC_DOMAIN}"
     - "*.${SECRET_PUBLIC_DOMAIN}"
+    - "${SECRET_PUBLIC_DOMAIN}"
