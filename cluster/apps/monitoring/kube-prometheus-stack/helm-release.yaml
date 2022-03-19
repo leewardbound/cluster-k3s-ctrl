@@ -120,12 +120,24 @@ spec:
             targetLabel: instance
     kubeApiServer:
       enabled: true
+    kubeControllerManager:
+      enabled: true
+      endpoints:
+        - 10.20.30.111
+    kubeScheduler:
+      enabled: true
+      endpoints:
+        - 10.20.30.111
+    kubeProxy:
+      enabled: true
+      endpoints:
+        - 10.20.30.111
     kubeEtcd:
       enabled: true
       endpoints:
-        - 10.11.0.3
-        - 10.11.0.4
-        - 10.11.0.6
+        - 10.20.30.111
+        - 192.168.42.11
+        - 192.168.42.12
       service:
         enabled: true
         port: 2381
