@@ -115,6 +115,7 @@ spec:
                     roles:
                       - rtmp
                       - record
+                      - detect
                 rtmp:
                   enabled: True
                 record:
