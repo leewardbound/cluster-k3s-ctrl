@@ -12,6 +12,6 @@ resources:
   - networking
   - monitoring
   - authentik
-  #- home
-  #- media
+  - home
+  - media
   #- corporate
