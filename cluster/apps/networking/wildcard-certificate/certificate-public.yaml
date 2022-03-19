@@ -19,4 +19,4 @@ spec:
   dnsNames:
     - "${SECRET_PUBLIC_DOMAIN}"
     - "*.${SECRET_PUBLIC_DOMAIN}"
-    - "*.home.${SECRET_PUBLIC_DOMAIN}"
+    - "*.${SECRET_PRIVATE_DOMAIN}"
