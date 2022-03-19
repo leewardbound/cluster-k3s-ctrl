@@ -49,5 +49,8 @@ spec:
     postgresql:
       enabled: true
       postgresqlPassword: "${SECRET_AUTHENTIK_DB_PASSWORD}"
+      persistence:
+        storageClass: ceph-block
+
     redis:
       enabled: true
