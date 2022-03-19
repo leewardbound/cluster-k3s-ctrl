@@ -57,7 +57,7 @@ spec:
         prometheusRule:
           enabled: false
       extraArgs:
-        default-ssl-certificate: "networking/${SECRET_PRIVATE_DOMAIN/./-}-tls"
+        default-ssl-certificate: "networking/${SECRET_PUBLIC_DOMAIN/./-}-tls"
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
