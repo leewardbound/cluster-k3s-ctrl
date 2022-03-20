@@ -5,5 +5,5 @@ resources:
   - helm-release.yaml
   - monitoring
   #- blueprints
-  #- profiles
+  - profiles
   - toolbox-pod.yaml
