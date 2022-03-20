@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: zwavejs2mqtt
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: zwavejs2mqtt
+      version: 5.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/zwave-js/zwavejs2mqtt
+      tag: 6.5.0
+    env:
+      TZ: "${TIMEZONE}"
+    service:
+      main:
+        ports:
+          http:
+            port: 8091
+          websocket:
+            enabled: true
+            port: 3000
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        hosts:
+          - host: &host "zwavejs2mqtt.${SECRET_PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    securityContext:
+      privileged: true
+    persistence:
+      config:
+        enabled: true
+        existingClaim: zwavejs2mqtt-config-v1
+        mountPath: "/usr/src/app/store"
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_61201EEA-if00-port0
+        hostPathType: CharDevice
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: feature.node.kubernetes.io/usb-ff_10c4_8a2a.present
+                  operator: In
+                  values:
+                    - "true"

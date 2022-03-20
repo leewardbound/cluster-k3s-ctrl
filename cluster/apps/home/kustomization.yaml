@@ -7,3 +7,4 @@ resources:
   - mosquitto
   - frigate
   - home-assistant
+  - zwavejs2mqtt
