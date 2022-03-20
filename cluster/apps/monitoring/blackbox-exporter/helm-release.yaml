@@ -49,17 +49,14 @@ spec:
         scrapeTimeout: 30s
       targets:
         - module: icmp
-          name: enterprise.boundnet
-          url: enterprise.boundnet
+          name: enterprise
+          url: 10.20.30.111
         - module: icmp
-          name: vega.boundnet
-          url: vega.boundnet
+          name: vega
+          url: 10.20.30.112
         - module: icmp
-          name: ziti.boundnet
-          url: ziti.boundnet
-        - module: icmp
-          name: ctrl.boundnet
-          url: ctrl.boundnet
+          name: ziti
+          url: 10.20.30.113
     prometheusRule:
       enabled: true
       additionalLabels:
