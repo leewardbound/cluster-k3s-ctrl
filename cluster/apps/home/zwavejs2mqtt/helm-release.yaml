@@ -53,7 +53,7 @@ spec:
       usb:
         enabled: true
         type: hostPath
-        hostPath: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_61201EEA-if00-port0
+        hostPath: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_61201EEA-if01-port0
         hostPathType: CharDevice
     affinity:
       nodeAffinity:
