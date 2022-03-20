@@ -120,18 +120,6 @@ spec:
             targetLabel: instance
     kubeApiServer:
       enabled: true
-    kubeControllerManager:
-      enabled: true
-      endpoints:
-        - 10.20.30.111
-    kubeScheduler:
-      enabled: true
-      endpoints:
-        - 10.20.30.111
-    kubeProxy:
-      enabled: true
-      endpoints:
-        - 10.20.30.111
     kubeEtcd:
       enabled: true
       endpoints:
