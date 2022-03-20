@@ -1,0 +1,20 @@
+---
+apiVersion: config.kio.kasten.io/v1alpha1
+kind: Profile
+spec:
+  locationSpec:
+    credential:
+      secret:
+        apiVersion: v1
+        kind: secret
+        name: k10secret-s3-eu-north-1
+        namespace: kasten-io
+      secretType: AwsAccessKey
+    objectStore:
+      name: boundcorp-backups-eu-north-1
+      objectStoreType: S3
+      path: k10/${SECRET_K10_CLUSTER_ID}/migration
+      pathType: Directory
+      region: eu-north-1
+    type: ObjectStore
+  type: Location
