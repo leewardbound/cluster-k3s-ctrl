@@ -12,5 +12,5 @@ resources:
   - networking
   - monitoring
   - authentik
-  #- home
+  - home
   - media
