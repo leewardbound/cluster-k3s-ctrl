@@ -8,9 +8,9 @@ resources:
   - system-upgrade
   - cert-manager
   - kasten-io
-  - default
-  - networking
-  - monitoring
-  - authentik
-  - home
-  - media
+  #- default
+  #- networking
+  #- monitoring
+  #- authentik
+  #- home
+  #- media
