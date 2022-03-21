@@ -15,6 +15,6 @@ resources:
   - networking
   - default
   - authentik
-  #- monitoring
-  #- home
+  - monitoring
+  - home
   #- media
