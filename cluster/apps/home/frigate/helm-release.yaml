@@ -64,6 +64,7 @@ spec:
         mountPath: /dev/shm
     podAnnotations:
       configmap.reloader.stakater.com/reload: "frigate-config"
+      backup.velero.io/backup-volumes-excludes: "media,usb,cache"
     configmap:
       config:
         enabled: true
