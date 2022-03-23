@@ -32,7 +32,8 @@ spec:
           region: eu-north-1
           s3ForcePathStyle: true
       credential:
-        name: null
+        name: s3-eu-north-1
+        key: credentials.conf
       resticTimeout: 6h
     resources:
       requests:
