@@ -7,15 +7,14 @@ resources:
   - calico-system
   - system-upgrade
   - cert-manager
-  - kasten-io
   - velero
 
   # For disaster recovery, disable all apps below this line and leave only the system and k10 apps up above
   # You'll need to open a port to access k10
 
-  - networking
-  - default
-  - authentik
-  - monitoring
-  - home
+  #- networking
+  #- default
+  #- authentik
+  #- monitoring
+  #- home
   #- media
