@@ -20,5 +20,5 @@ resources:
 
   # Layer 2 Apps
   #- default
-  #- home
-  #- media
+  - home
+  - media
