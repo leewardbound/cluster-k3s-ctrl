@@ -23,17 +23,6 @@ spec:
     image:
       repository: velero/velero
       tag: v1.8.1
-    configuration:
-      provider: aws
-      backupStorageLocation:
-        name: eu-north-1
-        bucket: boundcorp-backups-eu-north-1
-        config:
-          region: eu-north-1
-          s3ForcePathStyle: true
-      credential:
-        name: s3-eu-north-1
-        key: credentials.conf
       resticTimeout: 6h
     resources:
       requests:
@@ -69,5 +58,5 @@ spec:
           ttl: 120h
   valuesFrom:
     - kind: Secret
-      name: velero-helm-values
+      name: s3-eu-north-1
       optional: false
