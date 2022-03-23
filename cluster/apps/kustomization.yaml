@@ -14,11 +14,11 @@ resources:
   # For disaster recovery, disable all apps below this line and leave only Layer 0 above
   # Layer 1 - Services
 
-  #- authentik
-  #- networking
-  #- monitoring
+  - authentik
+  - networking
+  - monitoring
 
   # Layer 2 Apps
-  #- default
-  #- home
-  #- media
+  - default
+  - home
+  - media
