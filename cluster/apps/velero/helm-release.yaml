@@ -64,7 +64,10 @@ spec:
         template:
           ttl: 120h
           includedNamespaces:
+            - cert-manager
             - authentik
+            - media
+            - home
   valuesFrom:
     - kind: Secret
       name: s3-eu-north-1
