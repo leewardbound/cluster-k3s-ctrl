@@ -19,7 +19,6 @@ spec:
     crds: Create
   upgrade:
     crds: CreateReplace
-  createNamespace: true
   values:
     image:
       repository: velero/velero
