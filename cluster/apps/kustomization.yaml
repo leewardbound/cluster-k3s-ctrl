@@ -19,6 +19,6 @@ resources:
   - monitoring
 
   # Layer 2 Apps
-  - default
-  - home
-  - media
+  #- default
+  #- home
+  #- media
