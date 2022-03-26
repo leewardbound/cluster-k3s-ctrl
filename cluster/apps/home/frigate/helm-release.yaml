@@ -121,7 +121,8 @@ spec:
                   enabled: True
                 record:
                   enabled: True
-                  retain_days: 7
+                  retain:
+                    days: 7
                   events:
                     retain:
                       default: 7
