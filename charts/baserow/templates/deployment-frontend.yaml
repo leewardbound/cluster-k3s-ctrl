@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ printf "%s-%s" (include "common.names.fullname" $) "frontend" }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: "baserow-frontend"
+spec:
+  {{ if $.Values.frontend.replicas -}}
+  replicas: {{ $.Values.frontend.replicas }}
+  {{- else -}}
+  replicas: 1
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "common.labels.selectorLabels" $ | nindent 6 }}
+      app.kubernetes.io/component: "baserow-frontend"
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.selectorLabels" $ | nindent 8 }}
+        app.kubernetes.io/component: "baserow-frontend"
+        app.kubernetes.io/version: "{{ $.Values.frontend.image.tag }}"
+    spec:
+      {{- if $.Values.frontend.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml $.Values.frontend.image.pullSecrets | nindent 8 }}
+      {{- end }}
+      {{- with $.Values.frontend.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $.Values.frontend.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      enableServiceLinks: true
+      {{ if $.Values.frontend.priorityClassName -}}
+      priorityClassName: {{ $.Values.frontend.priorityClassName }}
+      {{- end }}
+      containers:
+        - name: frontend
+          image: "{{ $.Values.frontend.image.repository }}:{{ $.Values.frontend.image.tag }}"
+          imagePullPolicy: "{{ $.Values.frontend.image.pullPolicy }}"
+          env:
+            {{- range $k, $v := $.Values.env }}
+            - name: {{ quote $k }}
+              value: {{ quote $v }}
+            {{- end }}
+            {{- include "baserow.env" (dict "root" $ "values" $.Values.baserow) | indent 12 }}
+            {{- range $name, $val := $.Values.envValueFrom }}
+            - name: {{ $name }}
+              valueFrom:
+                {{- toYaml $val | nindent 16 }}
+            {{- end }}
+            {{- with $.Values.envFrom }}
+          envFrom:
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
+          volumeMounts:
+            {{- with $.Values.volumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
