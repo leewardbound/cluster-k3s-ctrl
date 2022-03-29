@@ -26,7 +26,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "nginx-private"
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-search"
@@ -35,7 +35,7 @@ spec:
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/prowlarr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "prowlarr.${SECRET_PUBLIC_DOMAIN}"
+          - host: &host "prowlarr.${SECRET_PRIVATE_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -46,15 +46,6 @@ spec:
       config:
         enabled: true
         existingClaim: prowlarr-config-v1
-      backup:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "expanse.${SECRET_PRIVATE_DOMAIN}"
-            path: /tycho/Data/Backups/app/prowlarr
-        mountPath: /config/Backups
-        readOnly: false
     resources:
       requests:
         memory: 100Mi

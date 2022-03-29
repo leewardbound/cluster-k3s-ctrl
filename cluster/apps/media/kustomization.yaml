@@ -8,4 +8,11 @@ resources:
 
   # Downloaders
   - sabnzbd
+
+  # Crawlers
   - radarr
+  - sonarr
+  - prowlarr
+
+  # Players
+  - plex

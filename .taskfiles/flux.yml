@@ -20,7 +20,7 @@ tasks:
   sync-status:
     desc: Get status of kustomization sync
     cmds:
-      - git log -n1 && echo
+      - git --no-pager log -n1 --decorate=short && echo
       - "kubectl get kustomization -n flux-system | grep -vP 'revision: (?!main/)'"
 
   helm-status:

@@ -30,14 +30,12 @@ spec:
         - 100
     service:
       main:
-        type: LoadBalancer
-        externalIPs:
-          - "${SVC_PLEX_ADDR}"
+        loadBalancerIP: "${SVC_PLEX_ADDR}"
         externalTrafficPolicy: Local
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "nginx-public"
         annotations:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
@@ -58,22 +56,9 @@ spec:
         existingClaim: plex-config-v1
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "expanse.${SECRET_PRIVATE_DOMAIN}"
-            path: /tycho/Media
+        existingClaim: media-mega
         mountPath: /media
         readOnly: true
-      backup:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "expanse.${SECRET_PRIVATE_DOMAIN}"
-            path: /tycho/Data/Backups/app/plex
-        mountPath: /config/Backups
-        readOnly: false
       transcode:
         enabled: true
         type: emptyDir
