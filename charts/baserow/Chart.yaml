@@ -9,10 +9,10 @@ maintainers:
     email: leeward@boundcorp.net
 dependencies:
   - name: postgresql
-    version: 10.9.5
+    version: 11.1.11
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: redis
-    version: 15.3.2
+    version: 16.6.0
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
