@@ -108,8 +108,7 @@ spec:
           # ROUTE: '192.168.50.0/24'
           TZ: "${TIMEZONE}"
           FIREWALL: 'on'
-        configFile: |-
-            ${SECRET_VPN_CONFIG}
+        configFile: ${SECRET_VPN_CONFIG}
 
         scripts:
           up: |-
