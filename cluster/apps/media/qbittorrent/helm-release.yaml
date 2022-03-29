@@ -33,9 +33,7 @@ spec:
       bittorrent:
         enabled: true
         type: LoadBalancer
-        # loadBalancerIP: 192.168.70.106
-        externalIPs:
-          - "${SVC_QBITTORRENT_ADDR}"
+        loadBalancerIP: "${SVC_QBITTORRENT_ADDR}"
         ports:
           bittorrent:
             enabled: true
@@ -46,7 +44,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "nginx-private"
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-download"
@@ -59,7 +57,7 @@ spec:
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/qbittorrent/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "qb.${SECRET_PUBLIC_DOMAIN}"
+          - host: &host "qb.${SECRET_PRIVATE_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -86,11 +84,7 @@ spec:
         existingClaim: qbittorrent-config-v1
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "expanse.${SECRET_PRIVATE_DOMAIN}"
-            path: /tycho/Media
+        existingClaim: media-mega
         mountPath: /media
     resources:
       requests:
