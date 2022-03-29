@@ -59,10 +59,6 @@ spec:
       media:
         enabled: true
         existingClaim: media-mega
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "expanse.${SECRET_PRIVATE_DOMAIN}"
         mountPath: /media
     resources:
       requests:
