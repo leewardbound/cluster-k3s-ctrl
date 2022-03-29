@@ -26,7 +26,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "nginx-private"
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "music-box"
@@ -35,7 +35,7 @@ spec:
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/lidarr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "lidarr.${SECRET_PUBLIC_DOMAIN}"
+          - host: &host "lidarr.${SECRET_PRIVATE_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -66,21 +66,8 @@ spec:
         existingClaim: lidarr-config-v1
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "expanse.${SECRET_PRIVATE_DOMAIN}"
-            path: /tycho/Media
+        existingClaim: media-mega
         mountPath: /media
-      backup:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "expanse.${SECRET_PRIVATE_DOMAIN}"
-            path: /tycho/Data/Backups/app/lidarr
-        mountPath: /config/Backups
-        readOnly: false
     resources:
       requests:
         memory: 250Mi
