@@ -106,6 +106,7 @@ spec:
           runAsUser: 0
         env:
           # ROUTE: '192.168.50.0/24'
+          ROUTE_1: "10.0.0.0/8"
           TZ: "${TIMEZONE}"
           FIREWALL: 'on'
         configFile: ${SECRET_VPN_CONFIG}
