@@ -6,6 +6,7 @@ kind: Secret
 metadata:
     creationTimestamp: null
     name: vpn-auth
+    namespace: media
 sops:
     kms: []
     gcp_kms: []
