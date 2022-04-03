@@ -4,5 +4,7 @@ kind: Kustomization
 resources:
   - dashboard
   - config-pvc.yaml
+  - client.ovpn.sops.yaml
+  - ovpn.auth.sops.yaml
   - helm-release.yaml
   - tag-tracker-errors
