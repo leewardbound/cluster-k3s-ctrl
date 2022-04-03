@@ -98,9 +98,7 @@ spec:
         enabled: true
         type: openvpn
         openvpn:
-          auth: |
-            ${SECRET_VPN_USERNAME}
-            ${SECRET_VPN_PASSWORD}
+          authSecret: vpn-auth
         securityContext:
           runAsGroup: 0
           runAsUser: 0
@@ -109,7 +107,7 @@ spec:
           ROUTE_1: "10.0.0.0/8"
           TZ: "${TIMEZONE}"
           FIREWALL: 'on'
-        configFile: ${SECRET_VPN_CONFIG}
+        configFileSecret: vpn-config
 
         scripts:
           up: |-
