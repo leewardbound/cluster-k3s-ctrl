@@ -115,9 +115,11 @@ spec:
           up: |-
             #!/bin/bash
             /etc/openvpn/up.sh
+            mkdir -p /shared
             echo "connected" > /shared/vpnstatus
 
           down: |-
             #!/bin/bash
             /etc/openvpn/down.sh
+            mkdir -p /shared
             echo "disconnected" > /shared/vpnstatus
