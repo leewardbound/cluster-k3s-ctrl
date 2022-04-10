@@ -23,6 +23,11 @@ spec:
       tag: 0.39.4
     env:
       TZ: "${TIMEZONE}"
+    service:
+      main:
+        ports:
+          http:
+            port: 5000
     ingress:
       main:
         enabled: true
