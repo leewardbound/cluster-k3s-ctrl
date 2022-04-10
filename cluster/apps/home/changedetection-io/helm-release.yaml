@@ -26,7 +26,7 @@ spec:
     service:
       main:
         ports:
-          - name: http
+          http:
             port: 5000
     ingress:
       main:
