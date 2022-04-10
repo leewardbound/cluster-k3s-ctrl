@@ -23,6 +23,7 @@ spec:
       tag: 0.39.4
     env:
       TZ: "${TIMEZONE}"
+      BASE_URL: "https://changedetection.${SECRET_PRIVATE_DOMAIN}"
     service:
       main:
         ports:
