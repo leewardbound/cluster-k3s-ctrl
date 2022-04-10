@@ -9,3 +9,4 @@ resources:
   - home-assistant
   #- zigbee2mqtt
   - zwavejs2mqtt
+  - changedetection-io
