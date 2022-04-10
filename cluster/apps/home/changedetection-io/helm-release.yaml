@@ -46,7 +46,7 @@ spec:
         storageClass: ceph-block
         size: 10Gi
         mountPath: /datastore
-        accessMode: RWO
+        accessMode: ReadWriteOnce
     resources:
       requests:
         memory: 100Mi
