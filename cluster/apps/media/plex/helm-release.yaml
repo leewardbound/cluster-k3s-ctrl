@@ -74,6 +74,7 @@ spec:
                     - "true"
     podAnnotations:
       configmap.reloader.stakater.com/reload: "plex-promtail"
+      backup.velero.io/backup-volumes-excludes: "media,transcode"
     resources:
       requests:
         gpu.intel.com/i915: 1

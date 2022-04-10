@@ -45,6 +45,8 @@ spec:
     podSecurityContext:
       supplementalGroups:
         - 100
+    podAnnotations:
+      backup.velero.io/backup-volumes-excludes: "media"
     persistence:
       config:
         enabled: true

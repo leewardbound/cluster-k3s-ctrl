@@ -42,6 +42,8 @@ spec:
         tls:
           - hosts:
               - *host
+    podAnnotations:
+      backup.velero.io/backup-volumes-excludes: "media"
     persistence:
       config:
         enabled: true
