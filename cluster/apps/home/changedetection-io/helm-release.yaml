@@ -20,7 +20,7 @@ spec:
     fullnameOverride: changedetection-io
     image:
       repository: ghcr.io/dgtlmoon/changedetection.io
-      tag: 0.39.4
+      tag: 0.39.12
     env:
       TZ: "${TIMEZONE}"
       BASE_URL: "https://changedetection.${SECRET_PRIVATE_DOMAIN}"
