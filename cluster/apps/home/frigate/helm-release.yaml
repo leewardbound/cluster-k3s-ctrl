@@ -64,12 +64,13 @@ spec:
         mountPath: /dev/shm
     affinity:
       nodeAffinity:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: Equals
-                values:
-                  - vega
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: Equals
+                  values:
+                    - vega
     podAnnotations:
       configmap.reloader.stakater.com/reload: "frigate-config"
       backup.velero.io/backup-volumes-excludes: "media,usb,cache"
