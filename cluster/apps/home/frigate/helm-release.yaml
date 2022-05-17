@@ -68,7 +68,7 @@ spec:
           nodeSelectorTerms:
             - matchExpressions:
                 - key: kubernetes.io/hostname
-                  operator: Equals
+                  operator: In
                   values:
                     - vega
     podAnnotations:
