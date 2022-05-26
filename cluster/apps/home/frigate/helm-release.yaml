@@ -125,7 +125,7 @@ spec:
                     roles:
                       - rtmp
                       - record
-                      - detect
+                      # - detect
                 rtmp:
                   enabled: True
                 record:
@@ -140,9 +140,9 @@ spec:
                   timestamp: False
                   retain:
                     default: 7
-                objects:
-                  track:
-                    - person
-                    - cat
-                    - dog
+                objects: []
+                  #track:
+                    #- person
+                    #- cat
+                    #- dog
               # --
