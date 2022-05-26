@@ -7,8 +7,8 @@ resources:
   - media-browser
 
   # Downloaders
-  - sabnzbd
-  - qbittorrent
+  # - sabnzbd
+  # - qbittorrent
 
   # Crawlers
   - radarr
@@ -22,4 +22,4 @@ resources:
   - tautulli
 
   # Players
-  - plex
+  # - plex

@@ -100,10 +100,10 @@ spec:
                   max_area: 100000
                   threshold: 0.7
 
-            detectors:
-              cpu1:
-                type: cpu
-                num_threads: 1
+            detectors: []
+              # cpu1:
+                # type: cpu
+                # num_threads: 1
 
             # Global ffmpeg configuration
             ffmpeg:
