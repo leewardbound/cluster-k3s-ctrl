@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: frigate
+  name: &app frigate
   namespace: home
 spec:
   interval: 5m
@@ -100,10 +100,10 @@ spec:
                   max_area: 100000
                   threshold: 0.7
 
-            detectors: []
-              # cpu1:
-                # type: cpu
-                # num_threads: 1
+            detectors:
+              coral:
+                type: edgetpu
+                device: usb
 
             # Global ffmpeg configuration
             ffmpeg:
@@ -114,6 +114,29 @@ spec:
                 - /dev/dri/renderD128
                 - -hwaccel_output_format
                 - yuv420p
+              output_args:
+                record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac
+
+            rtmp:
+              enabled: true
+
+            snapshots:
+              enabled: true
+              timestamp: false
+              bounding_box: true
+              retain:
+                default: 10
+
+            record:
+              enabled: true
+              retain:
+                days: 2
+                mode: motion
+              events:
+                retain:
+                  default: 7
+                  mode: active_objects
+
 
             # Cameras
             cameras:
@@ -126,23 +149,4 @@ spec:
                       - rtmp
                       - record
                       # - detect
-                rtmp:
-                  enabled: True
-                record:
-                  enabled: True
-                  retain:
-                    days: 7
-                  events:
-                    retain:
-                      default: 7
-                snapshots:
-                  enabled: True
-                  timestamp: False
-                  retain:
-                    default: 7
-                objects: []
-                  #track:
-                    #- person
-                    #- cat
-                    #- dog
               # --
