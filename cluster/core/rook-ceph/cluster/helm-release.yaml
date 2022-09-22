@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: rook-ceph-cluster
-      version: v1.8.7
+      version: v1.10.1
       sourceRef:
         kind: HelmRepository
         name: rook-ceph-charts
@@ -53,6 +53,7 @@ spec:
       dashboard:
         enabled: true
         urlPrefix: /
+        port: 7000
         ssl: false
       storage:
         useAllNodes: false
