@@ -53,7 +53,7 @@ spec:
       dashboard:
         enabled: true
         urlPrefix: /
-        port: 7000
+        port: 8080
         ssl: false
       storage:
         useAllNodes: false
