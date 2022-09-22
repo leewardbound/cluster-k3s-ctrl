@@ -10,13 +10,14 @@ resources:
   - cert-manager
   - velero
 
+  - networking
+  - monitoring
+
 
   # For disaster recovery, disable all apps below this line and leave only Layer 0 above
   # Layer 1 - Services
 
     #- authentik
-    #- networking
-    #- monitoring
 
   # Layer 2 Apps
   #- default
