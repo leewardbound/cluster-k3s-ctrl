@@ -32,3 +32,7 @@
           ansible.builtin.command: "wipefs -af {{ item }}"
           with_items:
             - "{{ rook_devices | default([]) }}"
+        - name: Cleanup Ansible Cache
+          ansible.builtin.file:
+            state: absent
+            path: /tmp/.ansible
