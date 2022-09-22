@@ -53,8 +53,6 @@ spec:
       dashboard:
         enabled: true
         urlPrefix: /
-        port: 7000
-        ssl: false
       storage:
         useAllNodes: false
         useAllDevices: false
