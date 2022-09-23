@@ -4,22 +4,22 @@ resources:
   # Core
   - media-mega-pvc.yaml
   - toolbox-pod.yaml
-  - media-browser
+  #- media-browser
 
   # Downloaders
   # - sabnzbd
   # - qbittorrent
 
   # Crawlers
-  - radarr
-  - sonarr
-  - prowlarr
-  - lidarr
-  - readarr
+  #- radarr
+  #- sonarr
+  #- prowlarr
+  #- lidarr
+  #- readarr
 
   # Requesters
-  - overseerr
-  - tautulli
+  #- overseerr
+  #- tautulli
 
   # Players
   # - plex

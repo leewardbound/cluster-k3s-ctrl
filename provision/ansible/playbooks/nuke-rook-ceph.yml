@@ -16,8 +16,15 @@
           ansible.builtin.file:
             state: absent
             path: "/var/lib/rook"
+        - name: Zero the drives
+          ansible.builtin.shell: >
+            echo "Zeroing {{item}}"
+            dd if=/dev/zero of={{item}} bs=1MB count=250000
+          loop:
+            - "{{ rook_devices | default([]) }}"
         - name: Zap the drives
           ansible.builtin.shell: >
+            echo "Zapping {{item}}"
             sgdisk --zap-all {{ item }} || true
           loop:
             - "{{ rook_devices | default([]) }}"
@@ -32,7 +39,3 @@
           ansible.builtin.command: "wipefs -af {{ item }}"
           with_items:
             - "{{ rook_devices | default([]) }}"
-        - name: Cleanup Ansible Cache
-          ansible.builtin.file:
-            state: absent
-            path: /tmp/.ansible
