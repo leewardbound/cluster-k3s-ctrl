@@ -72,6 +72,11 @@ spec:
             devices:
               - name: "sda"
               - name: "sdc"
+      resources:
+        prepareosd:
+          limits:
+            cpu: 2000m
+            memory: 2048Mi
     cephBlockPools:
       - name: ceph-blockpool
         spec:
