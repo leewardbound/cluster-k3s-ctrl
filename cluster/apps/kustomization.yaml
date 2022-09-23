@@ -18,6 +18,7 @@ resources:
   # For disaster recovery, disable all apps below this line and leave only Layer 0 above
   # Layer 2 - Services
   - authentik
+  - uptime-kuma
 
   # Layer 3 - Apps
   - default
