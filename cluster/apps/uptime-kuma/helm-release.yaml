@@ -2,43 +2,56 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: uptime-kuma
+  name: &app uptime-kuma
   namespace: uptime-kuma
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: uptime-kuma
+      chart: app-template
+      version: 0.2.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
+    global:
+      nameOverride: *app
     image:
       repository: louislam/uptime-kuma
-      tag: 1.18.0-alpine
-    env:
-      - name: TZ
-        value: ${TIMEZONE}
+      tag: 1.18.0
+    service:
+      main:
+        ports:
+          http:
+            port: 3001
     persistence:
-      data:
+      config:
         enabled: true
         existingClaim: uptime-kuma-data
+        mountPath: /app/data
     ingress:
-      enabled: true
-      primary:
+      main:
         enabled: true
         ingressClassName: "nginx-public"
-        annotations:
-          hajimari.io/enable: "true"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-          external-dns/is-public: "true"
         hosts:
           - host: &host "status.${SECRET_PUBLIC_DOMAIN}"
             paths:
-              - path: "/"
+              - path: /
                 pathType: Prefix
-      tls:
-        - hosts:
-            - *host
+        tls:
+          - hosts:
+              - *host
+    resources:
+      requests:
+        cpu: 10m
+        memory: 50Mi
+      limits:
+        memory: 150Mi
