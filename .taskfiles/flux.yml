@@ -37,7 +37,7 @@ tasks:
   watch:
     desc: Watch helper for flux
     cmds:
-      - watch task flux:status
+      - watch -n5 task flux:status
 
   deploy:
     desc: Push and sync repository on main/ branch

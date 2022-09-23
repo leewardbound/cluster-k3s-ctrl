@@ -10,6 +10,22 @@
       pause:
         seconds: 5
   tasks:
+    - name: Safety Check
+      any_errors_fatal: true
+      block:
+        - name: "Ensure disks have no partitions"
+          ansible.builtin.shell: >
+            export ITEM={{item}};
+            export BLOCK=$(lsblk | grep $(echo $ITEM | cut -d\/ -f3));
+            if (echo $BLOCK | grep -q part) then
+              echo "!!! Partition found on $ITEM, aborting !!!";
+              exit 1;
+            else
+              echo "No partitions on $ITEM, continuing"
+            fi
+          with_items:
+            - "{{ rook_devices | default([]) }}"
+
     - name: Reset disks
       block:
         - name: Remove /var/lib/rook
@@ -19,7 +35,7 @@
         - name: Zero the drives
           ansible.builtin.shell: >
             echo "Zeroing {{item}}"
-            dd if=/dev/zero of={{item}} bs=1MB count=250000
+            dd if=/dev/zero of={{item}} bs=0MB count=250000
           loop:
             - "{{ rook_devices | default([]) }}"
         - name: Zap the drives
