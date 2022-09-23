@@ -24,7 +24,7 @@ spec:
     persistence:
       data:
         enabled: true
-        storageClassName: ceph-block
+        existingClaim: uptime-kuma-data
     ingress:
       enabled: true
       ingressClassName: "nginx-public"
