@@ -16,10 +16,10 @@
         - name: "Ensure disks have no partitions"
           ansible.builtin.shell: >
             export ITEM={{item}};
-            export BLOCK=$(lsblk | grep $(echo $ITEM | cut -d\/ -f3));
-            if (echo $BLOCK | grep -q part) then
-              echo "!!! Partition found on $ITEM, aborting !!!";
-              exit 1;
+            export BLOCK=$(blkid | grep $ITEM | grep -v bluestore);
+            if (echo $BLOCK | grep PARTUUID) then
+              echo "!!! Partition found on $ITEM, aborting !!! ($BLOCK)";
+              exit 1
             else
               echo "No partitions on $ITEM, continuing"
             fi

@@ -2,7 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # Layer 0 - System Resources + Dependencies
+  # Layer 0 - System Resources + Core Dependencies
   - rook-ceph
   - kube-system
   - calico-system
@@ -10,16 +10,16 @@ resources:
   - cert-manager
   - velero
 
+  # Layer 1 -  Telemetry
   - networking
   - monitoring
 
 
   # For disaster recovery, disable all apps below this line and leave only Layer 0 above
-  # Layer 1 - Services
+  # Layer 2 - Services
+  - authentik
 
-    #- authentik
-
-  # Layer 2 Apps
-  #- default
-  #- home
-  #- media
+  # Layer 3 - Apps
+  - default
+  - home
+  - media
