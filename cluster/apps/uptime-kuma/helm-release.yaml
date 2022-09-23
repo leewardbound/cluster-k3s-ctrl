@@ -5,6 +5,7 @@ metadata:
   name: uptime-kuma
   namespace: uptime-kuma
 spec:
+  interval: 5m
   chart:
     spec:
       chart: uptime-kuma
