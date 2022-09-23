@@ -26,6 +26,7 @@ spec:
         enabled: true
         existingClaim: uptime-kuma-data
     ingress:
+      enabled: true
       primary:
         enabled: true
         ingressClassName: "nginx-public"
