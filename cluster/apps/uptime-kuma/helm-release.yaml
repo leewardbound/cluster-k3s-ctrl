@@ -13,8 +13,6 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
-  install:
-    createNamespace: true
   values:
     image:
       repository: louislam/uptime-kuma
