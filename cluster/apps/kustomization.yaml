@@ -16,11 +16,12 @@ resources:
 
 
   # For disaster recovery, disable all apps below this line and leave only Layer 0 above
-  # Layer 2 - Services
-  - authentik
-  - uptime-kuma
+  # Layer 2 - Business Services
+  - business/authentik
+  - business/uptime-kuma
+  - business/vaultwarden
 
-  # Layer 3 - Apps
+  # Layer 3 - Personal Apps
   - default
   - home
   - media

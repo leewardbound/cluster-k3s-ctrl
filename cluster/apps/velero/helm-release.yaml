@@ -70,6 +70,7 @@ spec:
             - networking
             - monitoring
             - uptime-kuma
+            - vaultwarden
   valuesFrom:
     - kind: Secret
       name: s3-eu-north-1
