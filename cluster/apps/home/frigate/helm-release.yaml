@@ -22,10 +22,11 @@ spec:
       namespace: home
   values:
     image:
-      repository: ghcr.io/k8s-at-home/frigate
+      repository: docker.io/blakeblackshear/frigate
       tag: 0.11.0
     env:
       TZ: "${TIMEZONE}"
+      LIBVA_DRIVER_NAME: i965
     ingress:
       main:
         enabled: true
