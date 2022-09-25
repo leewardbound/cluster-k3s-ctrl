@@ -15,11 +15,9 @@ resources:
   - monitoring
 
 
-  # For disaster recovery, disable all apps below this line and leave only Layer 0 above
+  # For disaster recovery, disable all apps below this line and leave only Layer 0+1 above
   # Layer 2 - Business Services
-  - business/authentik
-  - business/uptime-kuma
-  - business/vaultwarden
+  - business
 
   # Layer 3 - Personal Apps
   - default
