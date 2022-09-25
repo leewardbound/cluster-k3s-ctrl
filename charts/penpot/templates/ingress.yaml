@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-  {{- $apiIsStable := include "baserow.ingress.isStable" . -}}
+  {{- $apiIsStable := include "penpot.ingress.isStable" . -}}
 apiVersion: {{ include "common.capabilities.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
