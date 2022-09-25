@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/frigate
-      tag: v0.11.0-amd64
+      tag: 0.11.0
     env:
       TZ: "${TIMEZONE}"
     ingress:
