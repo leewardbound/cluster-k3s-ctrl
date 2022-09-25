@@ -32,6 +32,7 @@ spec:
         ingressClassName: nginx-private
         annotations:
           hajimari.io/enable: "true"
+          hajimari.io/group: "monitoring"
         host:
           name: &host "rook.${SECRET_PRIVATE_DOMAIN}"
           path: "/"

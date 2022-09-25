@@ -29,6 +29,7 @@ spec:
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "chip"
+          hajimari.io/group: "home"
         hosts:
           - host: &host "esphome.${SECRET_PRIVATE_DOMAIN}"
             paths:

@@ -24,6 +24,8 @@ spec:
     ingress:
       enabled: true
       className: nginx-private
+      annotations:
+        hajimari.io/enable: false
       hosts:
         - host: &host "blackbox.${SECRET_PRIVATE_DOMAIN}"
           paths:

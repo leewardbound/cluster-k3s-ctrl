@@ -21,6 +21,9 @@ spec:
     ingress:
       enabled: true
       ingressClassName: nginx-private
+      annotations:
+        hamijari.io/enable: "true"
+        hamijari.io/group: "monitoring"
       hosts:
         - host: &host "loki.${SECRET_PRIVATE_DOMAIN}"
           paths:

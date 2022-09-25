@@ -5,11 +5,13 @@ metadata:
   name: grist
   namespace: home
   annotations:
+    hajimari.io/group: "home"
     hajimari.io/enable: "true"
+
 spec:
   ingressClassName: nginx-private
   rules:
-    - host: tables.${SECRET_PRIVATE_DOMAIN}
+    - host: grist.${SECRET_PRIVATE_DOMAIN}
       http:
         paths:
           - path: /

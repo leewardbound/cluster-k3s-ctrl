@@ -6,6 +6,7 @@ metadata:
   namespace: networking
   annotations:
     hajimari.io/enable: "true"
+    hajimari.io/group: "home"
 spec:
   ingressClassName: nginx-private
   rules:

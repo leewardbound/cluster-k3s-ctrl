@@ -58,6 +58,8 @@ spec:
         ingressClassName: "nginx-public"
         annotations:
           hajimari.io/icon: "form-textbox-password"
+          hajimari.io/enable: "true"
+          hajimari.io/group: "business"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
