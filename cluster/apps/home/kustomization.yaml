@@ -11,4 +11,3 @@ resources:
 
   #- zigbee2mqtt
   - zwavejs2mqtt
-  - changedetection-io
