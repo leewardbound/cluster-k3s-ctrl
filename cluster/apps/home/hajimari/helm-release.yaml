@@ -25,16 +25,7 @@ spec:
       TZ: "${TIMEZONE}"
     hajimari:
       name: "leeward"
-      defaultEnable: true
-      namespaceSelector:
-        matchNames:
-          - authentik
-          - home
-          - media
-          - monitoring
-          - networking
-          - rook-ceph
-          - kasten-io
+      defaultEnable: false
     ingress:
       main:
         enabled: true
