@@ -42,8 +42,3 @@ spec:
       PENPOT_PUBLIC_URI: "https://design.${SECRET_PUBLIC_DOMAIN}"
       PENPOT_FLAGS: "enable-registration enable-login"
       PENPOT_REGISTRATION_DOMAIN_WHITELIST: "${SECRET_PUBLIC_DOMAIN}"
-
-    readinessProbe:
-      enabled: false
-    livenessProbe:
-      enabled: false
