@@ -1,0 +1,147 @@
+# -- Server replicas
+replicas: 1
+# -- Custom priority class for different treatment by the scheduler
+priorityClassName:
+
+image:
+  repository: penpotapp
+  tag: 1.15.2-beta
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+ingress:
+  enabled: false
+  ingressClassName: ""
+  annotations: {}
+  labels: {}
+  hostname: penpot.domain.tld
+  tls:
+    - hosts: []
+      secretName: ""
+
+penpot:
+  # -- Log level for server and worker
+  log_level: info
+  # -- Secret key used for cookie singing and unique user IDs,
+  # don't change this after the first install
+  secret_key: ""
+  email:
+    # -- SMTP Server emails are sent from, fully optional
+    host: ""
+    port: 587
+    # -- SMTP credentials, when left empty, not authentication will be done
+    username: ""
+    # -- SMTP credentials, when left empty, not authentication will be done
+    password: ""
+    # -- Enable either use_tls or use_ssl, they can't be enabled at the same time.
+    use_tls: false
+    # -- Enable either use_tls or use_ssl, they can't be enabled at the same time.
+    use_ssl: false
+    # -- Connection timeout
+    timeout: 30
+    # -- Email from address, can either be in the format "foo@bar.baz" or "authentik <foo@bar.baz>"
+    from: ""
+
+# -- see configuration options at https://baserow.io/docs/installation%2Fconfiguration
+env:
+  PENPOT_PUBLIC_URI: http://penpot-frontend
+  PENPOT_TENANT: pro
+  PENPOT_FLAGS: "enable-registration enable-login"
+  PENPOT_HTTP_SERVER_HOST: 0.0.0.0
+  PENPOT_DATABASE_URI: postgresql://penpot-postgresql/penpot
+  PENPOT_DATABASE_USERNAME: postgres
+  PENPOT_DATABASE_PASSWORD: penpot
+  PENPOT_REDIS_URI: redis://penpot-redis-master/0
+  PENPOT_ASSETS_STORAGE_BACKEND: assets-fs
+  PENPOT_STORAGE_ASSETS_FS_DIRECTORY: /opt/data/assets
+  PENPOT_TELEMETRY_ENABLED: true
+
+envFrom: []
+#  - configMapRef:
+#      name: special-config
+
+envValueFrom: {}
+#  BASEROW_VAR_NAME:
+#    secretKeyRef:
+#      key: password
+#      name: my-secret
+
+service:
+  # -- Service that is created to access baserow
+  enabled: true
+  type: ClusterIP
+  port: 80
+  name: http
+  protocol: TCP
+  labels: {}
+  annotations: {}
+
+volumes:
+  data:
+    enabled: false
+    mountPath: /baserow/data
+
+volumeMounts: []
+
+# -- affinity applied to the deployments
+affinity: {}
+
+# -- nodeSelector applied to the deployments
+nodeSelector: {}
+
+resources:
+  server: {}
+  worker: {}
+
+# WARNING: liveness and readiness probes are disabled, i am having some trouble with the /health/ endpoint
+livenessProbe:
+  # -- enables or disables the livenessProbe
+  enabled: false
+  httpGet:
+    # -- liveness probe url path
+    path: /_health/
+    port: http
+  initialDelaySeconds: 50
+  periodSeconds: 10
+
+readinessProbe:
+  enabled: false
+  httpGet:
+    path: /_health/
+    port: http
+  initialDelaySeconds: 50
+  periodSeconds: 10
+
+prometheus:
+  serviceMonitor:
+    create: false
+    interval: 30s
+    scrapeTimeout: 3s
+  rules:
+    create: false
+
+
+postgresql:
+  # -- enable the bundled bitnami postgresql chart
+  enabled: true
+  auth:
+    postgresPassword: "penpot"
+    database: "penpot"
+  postgresqlPassword: "penpot"
+  postgresqlDatabase: "penpot"
+  persistence:
+    enabled: true
+  #   storageClass:
+  #   accessModes:
+  #     - ReadWriteOnce
+
+redis:
+  # -- enable the bundled bitnami redis chart
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: false
+  master:
+    disableCommands: []
+  replica:
+    disableCommands: []

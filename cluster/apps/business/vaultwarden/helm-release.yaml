@@ -31,7 +31,7 @@ spec:
       tag: 1.25.1@sha256:ea7901a9629897801b38b6afbce1869d357ebb9e080ec6ffff5839d85d8a79e4
     env:
       DATA_FOLDER: "config"
-      SIGNUPS_ALLOWED: true
+      SIGNUPS_ALLOWED: false
       WEBSOCKET_ENABLED: true
       WEBSOCKET_ADDRESS: 0.0.0.0
       WEBSOCKET_PORT: 3012

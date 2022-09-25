@@ -65,12 +65,16 @@ spec:
           ttl: 120h
           includedNamespaces:
             - cert-manager
-            - authentik
             - home
             - networking
             - monitoring
+
+            # Business Apps
+            - authentik
             - uptime-kuma
             - vaultwarden
+            - penpot
+            - baserow
   valuesFrom:
     - kind: Secret
       name: s3-eu-north-1
