@@ -25,7 +25,7 @@ spec:
       enabled: true
       className: nginx-private
       annotations:
-        hajimari.io/enable: false
+        hajimari.io/enable: "false"
       hosts:
         - host: &host "blackbox.${SECRET_PRIVATE_DOMAIN}"
           paths:

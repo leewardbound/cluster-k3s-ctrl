@@ -32,7 +32,7 @@ spec:
         enabled: true
         hostname: "thanos.${SECRET_PUBLIC_DOMAIN}"
         annotations:
-          hajimari.io/enable: false
+          hajimari.io/enable: "false"
         ingressClassName: "nginx-private"
         tls: true
     existingObjstoreSecret: thanos-objstore
