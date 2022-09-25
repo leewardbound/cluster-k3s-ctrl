@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: {{ include "common.names.fullname" . }}-backend
   labels:
-  {{- include "common.labels" . | nindent 4 }}
   {{- with .Values.service.annotations }}
   annotations:
   {{ toYaml . | nindent 4 }}
@@ -15,5 +14,4 @@ spec:
       protocol: TCP
       name: backend
   selector:
-    {{- include "common.labels.selectorLabels" . | nindent 4 }}
     app.kubernetes.io/component: "backend"

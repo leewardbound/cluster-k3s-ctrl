@@ -1,4 +1,4 @@
-{{- define "baserow.ingress.isStable" -}}
+{{- define "penpot.ingress.isStable" -}}
   {{- $isStable := "" -}}
   {{- if eq (include "common.capabilities.ingress.apiVersion" $) "networking.k8s.io/v1" -}}
     {{- $isStable = "true" -}}
@@ -6,11 +6,11 @@
   {{- $isStable -}}
 {{- end -}}
 
-{{- define "baserow.env" -}}
+{{- define "penpot.env" -}}
   {{- range $k, $v := .values -}}
     {{- if kindIs "map" $v -}}
       {{- range $sk, $sv := $v -}}
-        {{- include "baserow.env" (dict "root" $.root "values" (dict (printf "%s__%s" (upper $k) (upper $sk)) $sv)) -}}
+        {{- include "penpot.env" (dict "root" $.root "values" (dict (printf "%s__%s" (upper $k) (upper $sk)) $sv)) -}}
       {{- end -}}
     {{- else -}}
       {{- $value := $v -}}
@@ -20,7 +20,7 @@
         {{- $v = tpl $v $.root | quote }}
       {{- end -}}
       {{- if and ($v) (ne $v "\"\"") }}
-- name: {{ printf "BASEROW_%s" (upper $k) }}
+- name: {{ printf "PENPOT_%s" (upper $k) }}
   value: {{ $v }}
       {{- end }}
     {{- end -}}
