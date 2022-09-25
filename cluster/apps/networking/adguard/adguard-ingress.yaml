@@ -16,6 +16,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: adguard-adguard-home
+                name: adguard
                 port:
-                  name: http
+                  number: 3010
