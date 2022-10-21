@@ -4,8 +4,9 @@ replicas: 1
 priorityClassName:
 
 image:
-  repository: penpotapp
-  tag: 1.15.2-beta
+  repository: nocodb
+  image: nocodb
+  tag: 0.98.1
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -14,61 +15,31 @@ ingress:
   ingressClassName: ""
   annotations: {}
   labels: {}
-  hostname: penpot.domain.tld
+  hostname: nocodb.domain.tld
   tls:
     - hosts: []
       secretName: ""
 labels:
 
-penpot:
-  # -- Log level for server and worker
-  log_level: info
-  # -- Secret key used for cookie singing and unique user IDs,
-  # don't change this after the first install
-  secret_key: ""
-  email:
-    # -- SMTP Server emails are sent from, fully optional
-    host: ""
-    port: 587
-    # -- SMTP credentials, when left empty, not authentication will be done
-    username: ""
-    # -- SMTP credentials, when left empty, not authentication will be done
-    password: ""
-    # -- Enable either use_tls or use_ssl, they can't be enabled at the same time.
-    use_tls: false
-    # -- Enable either use_tls or use_ssl, they can't be enabled at the same time.
-    use_ssl: false
-    # -- Connection timeout
-    timeout: 30
-    # -- Email from address, can either be in the format "foo@bar.baz" or "authentik <foo@bar.baz>"
-    from: ""
-
-# -- see configuration options at https://baserow.io/docs/installation%2Fconfiguration
 env:
-  PENPOT_PUBLIC_URI: http://penpot-frontend
-  PENPOT_TENANT: pro
-  PENPOT_FLAGS: "enable-registration enable-login"
-  PENPOT_HTTP_SERVER_HOST: 0.0.0.0
-  PENPOT_DATABASE_URI: postgresql://penpot-postgresql/penpot
-  PENPOT_DATABASE_USERNAME: postgres
-  PENPOT_DATABASE_PASSWORD: penpot
-  PENPOT_REDIS_URI: redis://penpot-redis-master/0
-  PENPOT_ASSETS_STORAGE_BACKEND: assets-fs
-  PENPOT_STORAGE_ASSETS_FS_DIRECTORY: /opt/data/assets
-  PENPOT_TELEMETRY_ENABLED: true
+  NC_DB: "pg://nocodb:5432?u=nocodb&p=nocodb&d=nocodb"
+  NC_AUTH_JWT_SECRET: "change_me"
+  NC_PUBLIC_URL: "https://changeme"
+  NC_INVITE_ONLY_SIGNUP: true
+  NC_REDIS_URL: redis://
 
 envFrom: []
 #  - configMapRef:
 #      name: special-config
 
 envValueFrom: {}
-#  BASEROW_VAR_NAME:
+#  NOCODB_VAR_NAME:
 #    secretKeyRef:
 #      key: password
 #      name: my-secret
 
 service:
-  # -- Service that is created to access penpot
+  # -- Service that is created to access nocodb
   enabled: true
   type: ClusterIP
   port: 80
@@ -80,7 +51,9 @@ service:
 volumes:
   data:
     enabled: true
-    mountPath: /home/penpot
+    storageClass: default
+    size: 50Gi
+    mountPath: /usr/app/data
 
 volumeMounts: []
 
@@ -126,10 +99,10 @@ postgresql:
   # -- enable the bundled bitnami postgresql chart
   enabled: true
   auth:
-    postgresPassword: "penpot"
-    database: "penpot"
-  postgresqlPassword: "penpot"
-  postgresqlDatabase: "penpot"
+    postgresPassword: "nocodb"
+    database: "nocodb"
+  postgresqlPassword: "nocodb"
+  postgresqlDatabase: "nocodb"
   persistence:
     enabled: true
   #   storageClass:

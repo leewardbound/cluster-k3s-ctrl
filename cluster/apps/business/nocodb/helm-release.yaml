@@ -2,14 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app penpot
+  name: &app nocodb
   namespace: business
 spec:
   releaseName: *app
   interval: 15m
   chart:
     spec:
-      chart: charts/penpot
+      chart: charts/nocodb
       version: 1.0.0
       sourceRef:
         kind: GitRepository
@@ -34,20 +34,12 @@ spec:
         external-dns/is-public: "true"
         hajimari.io/enable: "true"
         hajimari.io/group: "business"
-      hostname: &host "design.${SECRET_PUBLIC_DOMAIN}"
+      hostname: &host "db.${SECRET_PUBLIC_DOMAIN}"
       tls:
         - hosts:
             - *host
 
     env:
-      PENPOT_PUBLIC_URI: "https://design.${SECRET_PUBLIC_DOMAIN}"
-      PENPOT_FLAGS: "enable-registration enable-login"
-      PENPOT_REGISTRATION_DOMAIN_WHITELIST: "${SECRET_PUBLIC_DOMAIN}"
-      PENPOT_SMTP_ENABLED: true
-      PENPOT_SMTP_HOST: ${SECRET_SES_SMTP_HOST}
-      PENPOT_SMTP_DEFAULT_FROM: "PenPot <${SECRET_SES_SMTP_FROM_EMAIL}>"
-      PENPOT_SMTP_DEFAULT_REPLY_TO: "PenPot <${SECRET_SES_SMTP_FROM_EMAIL}>"
-      PENPOT_SMTP_TLS: true
-      PENPOT_SMTP_PORT: ${SECRET_SES_SMTP_PORT}
-      PENPOT_SMTP_USERNAME: "${SECRET_SES_ACCESS_KEY}"
-      PENPOT_SMTP_PASSWORD: "${SECRET_SES_SECRET_KEY}"
+      NC_PUBLIC_URL: "https://db.boundcorp.net"
+      NC_SMTP_FROM: "noreply@boundcorp.net"
+      NC_INVITE_ONLY_SIGNUP: false

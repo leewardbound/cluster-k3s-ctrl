@@ -1,0 +1,32 @@
+{{- if .Values.ingress.enabled -}}
+  {{- $apiIsStable := include "nocodb.ingress.isStable" . -}}
+apiVersion: {{ include "common.capabilities.ingress.apiVersion" . }}
+kind: Ingress
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS, PATCH"
+  {{- end }}
+spec:
+  {{- if and $apiIsStable .Values.ingress.ingressClassName }}
+  ingressClassName: {{ $.Values.ingress.ingressClassName }}
+  {{- end }}
+  {{- with .Values.ingress.tls }}
+  tls:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  rules:
+    - host: {{ .Values.ingress.hostname | quote }}
+      http:
+        paths:
+          - path: "/"
+            pathType: "Prefix"
+            backend:
+              service:
+                name: {{ include "common.names.fullname" $ }}-app
+                port:
+                  name: app
+{{- end }}
