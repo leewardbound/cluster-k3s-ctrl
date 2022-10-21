@@ -54,7 +54,7 @@ spec:
           - hosts:
               - *host
     persistence:
-      config:
+      data:
         enabled: true
         existingClaim: nocodb-data
         mountPath: /usr/app/data
