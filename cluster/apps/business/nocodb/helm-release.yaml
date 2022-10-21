@@ -9,14 +9,15 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: charts/nocodb
-      version: 1.0.0
+      chart: kah-common-chart
+      version: 1.2.2
       sourceRef:
-        kind: GitRepository
-        name: flux-system # self-reference to this repository
+        kind: HelmRepository
+        name: k8s-at-home-charts
         namespace: flux-system
       interval: 15m
   install:
+    createNamespace: true
     remediation:
       retries: 5
   upgrade:
@@ -25,21 +26,39 @@ spec:
   values:
     global:
       nameOverride: *app
-
+    image:
+      repository: nocodb/nocodb
+      tag: 0.98.1
+    service:
+      main:
+        ports:
+          http:
+            port: &port 8080
     ingress:
-      enabled: true
-      ingressClassName: "nginx-public"
-      annotations:
-        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
-        external-dns/is-public: "true"
-        hajimari.io/enable: "true"
-        hajimari.io/group: "business"
-      hostname: &host "db.${SECRET_PUBLIC_DOMAIN}"
-      tls:
-        - hosts:
-            - *host
+      main:
+        enabled: true
+        ingressClassName: "nginx-public"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/group: "business"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+          external-dns/is-public: "true"
+        hosts:
+          - host: &host "vault.${SECRET_PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *port
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        enabled: true
+        existingClaim: nocodb-data
 
     env:
-      NC_PUBLIC_URL: "https://db.boundcorp.net"
-      NC_SMTP_FROM: "noreply@boundcorp.net"
+      NC_PUBLIC_URL: "https://db.${SECRET_PUBLIC_DOMAIN}"
+      NC_SMTP_FROM: "noreply@${SECRET_PUBLIC_DOMAIN}"
       NC_INVITE_ONLY_SIGNUP: false
