@@ -57,6 +57,7 @@ spec:
       config:
         enabled: true
         existingClaim: nocodb-data
+        mountPath: /usr/app/data
 
     env:
       NC_PUBLIC_URL: "https://db.${SECRET_PUBLIC_DOMAIN}"
