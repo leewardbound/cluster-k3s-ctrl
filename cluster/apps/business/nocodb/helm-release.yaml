@@ -44,7 +44,7 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
-          - host: &host "vault.${SECRET_PUBLIC_DOMAIN}"
+          - host: &host "db.${SECRET_PUBLIC_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
