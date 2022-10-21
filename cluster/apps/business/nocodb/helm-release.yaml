@@ -62,3 +62,10 @@ spec:
       NC_PUBLIC_URL: "https://db.${SECRET_PUBLIC_DOMAIN}"
       NC_SMTP_FROM: "noreply@${SECRET_PUBLIC_DOMAIN}"
       NC_INVITE_ONLY_SIGNUP: false
+
+    redis:
+      enabled: true
+    postgresql:
+      enabled: true
+      persistence:
+        enabled: true
