@@ -4,8 +4,7 @@ replicas: 1
 priorityClassName:
 
 image:
-  repository: nocodb
-  image: nocodb
+  repository: nocodb/nocodb
   tag: 0.98.1
   pullPolicy: IfNotPresent
   pullSecrets: []

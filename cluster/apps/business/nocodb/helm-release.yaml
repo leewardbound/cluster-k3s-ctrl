@@ -27,7 +27,7 @@ spec:
     global:
       nameOverride: *app
     image:
-      image: nocodb/nocodb-timely
+      repository: nocodb/nocodb-timely
       tag: 0.98.1-pr-4088-20221015-0722
     service:
       main:
