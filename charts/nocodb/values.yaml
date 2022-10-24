@@ -4,7 +4,8 @@ replicas: 1
 priorityClassName:
 
 image:
-  repository: nocodb/nocodb
+  repository: nocodb
+  image: nocodb-timely
   tag: 0.98.1
   pullPolicy: IfNotPresent
   pullSecrets: []
