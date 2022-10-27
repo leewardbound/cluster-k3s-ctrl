@@ -25,6 +25,8 @@ spec:
   values:
     global:
       nameOverride: *app
+    image:
+      tag: 1.16.0-beta
 
     ingress:
       enabled: true

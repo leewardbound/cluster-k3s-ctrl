@@ -27,8 +27,8 @@ spec:
     global:
       nameOverride: *app
     image:
-      repository: nocodb/nocodb-timely
-      tag: 0.98.1-pr-4118-20221017-1023
+      repository: nocodb/nocodb
+      tag: 0.98.2
     service:
       main:
         ports:
