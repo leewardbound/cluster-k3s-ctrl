@@ -5,7 +5,7 @@ priorityClassName:
 
 image:
   repository: penpotapp
-  tag: 1.15.2-beta
+  tag: 1.16.0-beta
   pullPolicy: IfNotPresent
   pullSecrets: []
 
