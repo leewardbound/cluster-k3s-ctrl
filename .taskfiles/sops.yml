@@ -14,7 +14,7 @@ tasks:
   lock:
     desc: Encrypt the sops files
     cmds:
-      - find {{.ROOT}} -name "*.sops.*" | grep -v "/\." | xargs -r grep -Lw -e '^sops:' | grep {{.FN}} | xargs -rt -n1 sops --encrypt --in-place
+      - find {{.ROOT}} -name "*.sops.*" | grep -v "/\." | grep -v "/onedr0p/" | xargs -r grep -Lw -e '^sops:' | grep {{.FN}} | xargs -rt -n1 sops --encrypt --in-place
 
   install_secret:
     desc: Create the secret from SOPS_AGE_KEY_FILE
