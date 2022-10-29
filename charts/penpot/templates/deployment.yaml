@@ -36,7 +36,11 @@ spec:
       priorityClassName: {{ $.Values.priorityClassName }}
       containers:
         - name: {{ $.Chart.Name }}
+          {{- if eq . "backend" }}
+          image: "{{ $.Values.image.repository }}/{{ . }}:{{ $.Values.image.tagBackend }}"
+          {{- else }}
           image: "{{ $.Values.image.repository }}/{{ . }}:{{ $.Values.image.tag }}"
+          {{- end }}
           imagePullPolicy: "{{ $.Values.image.pullPolicy }}"
           env:
             {{- range $k, $v := $.Values.env }}
