@@ -26,6 +26,7 @@ spec:
     global:
       nameOverride: *app
     image:
+      repository: penpotapp
       tag: 1.16.0-beta
 
     ingress:
