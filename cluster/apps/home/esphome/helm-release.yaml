@@ -18,6 +18,8 @@ spec:
   install:
     createNamespace: true
   values:
+    image:
+      tag: 2022.10
     env:
       TZ: "${TIMEZONE}"
     hostNetwork: true
