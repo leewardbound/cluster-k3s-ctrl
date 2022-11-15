@@ -73,8 +73,8 @@ spec:
             - authentik
             - uptime-kuma
             - vaultwarden
-            - penpot
             - baserow
+            - business
   valuesFrom:
     - kind: Secret
       name: s3-eu-north-1
