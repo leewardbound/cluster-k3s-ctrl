@@ -30,4 +30,4 @@ spec:
     primary:
       persistence:
         enabled: true
-        existingClaim: mattermost-postgresql
+        existingClaim: data-mattermost-postgresql

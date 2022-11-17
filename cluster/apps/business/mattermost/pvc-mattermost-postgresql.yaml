@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mattermost-postgresql
+  name: data-mattermost-postgresql
   namespace: business
 spec:
   accessModes:
