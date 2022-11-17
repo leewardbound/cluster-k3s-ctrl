@@ -98,6 +98,9 @@ spec:
                 - cat
                 - bird
               filters:
+                bird:
+                  mask:
+                    - 0,286,0,0,1280,0,1280,403,1188,378
                 person:
                   min_area: 2500
                   max_area: 100000
