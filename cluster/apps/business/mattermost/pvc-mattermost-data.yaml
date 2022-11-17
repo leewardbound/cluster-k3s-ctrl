@@ -6,7 +6,7 @@ metadata:
   namespace: business
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 50Gi
