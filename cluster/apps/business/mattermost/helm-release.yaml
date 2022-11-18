@@ -36,6 +36,11 @@ spec:
         enabled: false
     ingress:
       enabled: true
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+        external-dns/is-public: "true"
+        hajimari.io/enable: "true"
+        hajimari.io/group: "business"
       hosts:
         - team.${SECRET_PUBLIC_DOMAIN}
       tls:
