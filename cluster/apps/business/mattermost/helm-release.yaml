@@ -83,4 +83,4 @@ spec:
             patch:
               - op: add
                 path: /spec/ingressClassName
-                value: nginx-private
+                value: nginx-public
