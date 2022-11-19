@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mattermost-data
-  namespace: business
+  name: leeward-backups
+  namespace: home
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 50Gi
+      storage: 2Ti
   storageClassName: cephfs-hdd
