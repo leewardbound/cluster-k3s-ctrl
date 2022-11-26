@@ -52,7 +52,8 @@ spec:
       postgresqlPassword: "${SECRET_AUTHENTIK_DB_PASSWORD}"
       persistence:
         enabled: true
-        storageClass: ceph-block
+        existingClaim: authentik-data
+
 
     redis:
       enabled: true
