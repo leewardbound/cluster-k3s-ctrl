@@ -3,8 +3,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
+
+  # TODO: Move these to cloud for uptime assurances
   - authentik
-  - penpot
-  - nocodb
   - vaultwarden
   - uptime-kuma
+
+  # Business Apps - keep these on-prem
+  - penpot
+  - nocodb
+  - gitlab

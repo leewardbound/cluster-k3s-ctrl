@@ -1,0 +1,134 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gitlab
+  namespace: business
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: gitlab
+      version: 6.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: gitlab
+        namespace: flux-system
+      interval: 1h
+  values:
+    global:
+      nodeSelector:
+        beta.kubernetes.io/arch: amd64
+      edition: ce
+      hosts:
+        domain: "code.${SECRET_PUBLIC_DOMAIN}"
+      ingress:
+        class: internal
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/group: "business"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+          external-dns/is-public: "true"
+        # Wildcard is configured by default
+        configureCertmanager: false
+        # TLS is enabled by default
+        tls:
+          enabled: false
+      kas:
+        enabled: false
+      pages:
+        enabled: true
+      email:
+        display_name: 'GitLab'
+        from: "${SECRET_SES_SMTP_FROM_EMAIL}"
+        reply_to: "${SECRET_SES_SMTP_FROM_EMAIL}"
+      smtp:
+        enabled: true
+        address: "${SECRET_SES_SMTP_HOST}"
+        port: "${SECRET_SES_SMTP_PORT}"
+        username: "${SECRET_SES_ACCESS_KEY}:${SECRET_SES_SECRET_KEY}"
+        password: "${SECRET_SES_SECRET_KEY}"
+        tls: true
+      appConfig:
+        omniauth:
+          enabled: true
+          autoSignInWithProvider: []
+          syncProfileFromProvider: [openid_connect]
+          allowSingleSignOn: [openid_connect]
+          allowBypassTwoFactor: [openid_connect]
+          syncProfileAttributes: [email]
+          blockAutoCreatedUsers: false
+          providers:
+            - secret: authentik-gitlab-oauth2
+    # Reduce memory usage
+    gitlab:
+      gitaly:
+        resources:
+          requests:
+            cpu: 80m
+            memory: 340M
+          limits:
+            cpu: 1800m
+      webservice:
+        minReplicas: 1
+        maxReplicas: 1
+        # https://gitlab.com/gitlab-org/charts/gitlab/-/blob/master/examples/ref/2k.yaml
+        workerProcesses: 1
+        resources:
+          limits:
+            memory: 1.5Gi # roughly, 1.5GB/worker
+          requests:
+            cpu: "0.9" # requests.cpu <= workerProcesses
+            memory: 1.25Gi # roughly, 1.25GB/worker
+      sidekiq:
+        minReplicas: 1
+        maxReplicas: 1
+      gitlab-shell:
+        minReplicas: 1
+        maxReplicas: 1
+      gitlab-pages:
+        # The default requests are massive for a static server
+        resources:
+          requests:
+            cpu: 10m
+            memory: 10Mi
+    # Disable things we handle by ourselves
+    certmanager:
+      install: false
+    nginx-ingress:
+      enabled: false
+    prometheus:
+      install: false
+    grafana:
+      enabled: false
+    gitlab-runner:
+      runners:
+        nodeSelector:
+          beta.kubernetes.io/arch: amd64
+  postRenderers:
+    - kustomize:
+        patches:
+          - patch: |-
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: dummy-app
+              spec:
+                template:
+                  spec:
+                    nodeSelector:
+                      beta.kubernetes.io/arch: amd64
+            target:
+              kind: Deployment
+          - patch: |-
+              apiVersion: apps/v1
+              kind: StatefulSet
+              metadata:
+                name: dummy-app
+              spec:
+                template:
+                  spec:
+                    nodeSelector:
+                      beta.kubernetes.io/arch: amd64
+            target:
+              kind: StatefulSet
