@@ -53,18 +53,21 @@ spec:
         tls: true
       appConfig:
         omniauth:
-          enabled: true
+          enabled: false
           autoSignInWithProvider: []
           syncProfileFromProvider: [openid_connect]
           allowSingleSignOn: [openid_connect]
           allowBypassTwoFactor: [openid_connect]
           syncProfileAttributes: [email]
           blockAutoCreatedUsers: false
-          providers:
-            - secret: authentik-gitlab-oauth2
+          #providers:
+            #- secret: authentik-gitlab-oauth2
     # Reduce memory usage
     gitlab:
       gitaly:
+        persistence:
+          storageClass: cephfs-hdd
+          size: 350Gi
         resources:
           requests:
             cpu: 80m
@@ -107,6 +110,19 @@ spec:
       runners:
         nodeSelector:
           beta.kubernetes.io/arch: amd64
+    postgresql:
+      persistence:
+        storageClass: ceph-block
+        size: 20Gi
+    minio:
+      persistence:
+        storageClass: cephfs-hdd
+        size: 200Gi
+    redis:
+      master:
+        persistence:
+          storageClass: ceph-block
+          size: 15Gi
   postRenderers:
     - kustomize:
         patches:
