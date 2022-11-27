@@ -22,6 +22,8 @@ spec:
       edition: ce
       hosts:
         domain: "code.${SECRET_PUBLIC_DOMAIN}"
+        gitlab:
+          name: "code.${SECRET_PUBLIC_DOMAIN}"
       ingress:
         class: internal
         annotations:
