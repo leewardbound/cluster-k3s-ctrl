@@ -112,6 +112,10 @@ spec:
       runners:
         nodeSelector:
           beta.kubernetes.io/arch: amd64
+    gitaly:
+      persistence:
+        storageClass: ceph-block
+        size: 400Gi
     postgresql:
       persistence:
         storageClass: ceph-block
