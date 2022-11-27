@@ -46,8 +46,10 @@ spec:
         enabled: true
         address: "${SECRET_SES_SMTP_HOST}"
         port: "${SECRET_SES_SMTP_PORT}"
-        username: "${SECRET_SES_ACCESS_KEY}:${SECRET_SES_SECRET_KEY}"
-        password: "${SECRET_SES_SECRET_KEY}"
+        username: "${SECRET_SES_ACCESS_KEY}"
+        password:
+          secret: gitlab-smtp-secret
+          key: secret
         tls: true
       appConfig:
         omniauth:
