@@ -55,15 +55,15 @@ spec:
         tls: true
       appConfig:
         omniauth:
-          enabled: false
+          enabled: true
           autoSignInWithProvider: []
           syncProfileFromProvider: [openid_connect]
           allowSingleSignOn: [openid_connect]
           allowBypassTwoFactor: [openid_connect]
           syncProfileAttributes: [email]
           blockAutoCreatedUsers: false
-          #providers:
-            #- secret: authentik-gitlab-oauth2
+          providers:
+            - secret: authentik-gitlab-oauth2
     # Reduce memory usage
     gitlab:
       gitaly:
