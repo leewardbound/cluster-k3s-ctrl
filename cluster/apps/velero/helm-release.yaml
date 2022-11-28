@@ -73,7 +73,6 @@ spec:
             - authentik
             - uptime-kuma
             - vaultwarden
-            - baserow
             - business
   valuesFrom:
     - kind: Secret
