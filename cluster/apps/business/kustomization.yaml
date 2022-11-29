@@ -13,3 +13,4 @@ resources:
   - penpot
   - nocodb
   - gitlab
+  - paperless-ngx
