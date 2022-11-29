@@ -48,7 +48,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: nginx-public
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/group: "business"
