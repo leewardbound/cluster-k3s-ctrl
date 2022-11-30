@@ -73,6 +73,7 @@ spec:
             - authentik
             - uptime-kuma
             - vaultwarden
+            - paperless-ngx
             - business
   valuesFrom:
     - kind: Secret
