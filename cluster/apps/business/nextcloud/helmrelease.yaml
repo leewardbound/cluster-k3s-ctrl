@@ -108,7 +108,7 @@ spec:
         custom.config.php: |-
           <?php
           $CONFIG = array (
-            'overwrite.cli.url' => 'https://cloud.${SECRET_DOMAIN}',
+            'overwrite.cli.url' => 'https://cloud.${SECRET_PUBLIC_DOMAIN}',
             'overwriteprotocol' => 'https',
             'filelocking.enabled' => 'true',
             'loglevel' => '2',
@@ -129,4 +129,6 @@ spec:
         enabled: true
         existingClaim: nextcloud-data
     rbac:
+      enabled: true
+    redis:
       enabled: true
