@@ -5,6 +5,7 @@ resources:
   - postgresql-pvc.yaml
   - pvc.yaml
   - postgresql-helm-release.yaml
+  - nextcloud-db.sops.yaml
   - cronjob.yaml
   - helmrelease.yaml
   - namespace.yaml
