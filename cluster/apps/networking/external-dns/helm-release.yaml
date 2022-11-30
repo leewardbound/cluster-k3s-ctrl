@@ -33,7 +33,6 @@ spec:
             name: cloudflare-creds
             key: api-key
     extraArgs:
-      - --cloudflare-proxied
       - --annotation-filter=external-dns/is-public in (true)
     policy: sync
     sources:
