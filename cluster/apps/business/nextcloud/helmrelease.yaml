@@ -102,7 +102,7 @@ spec:
         apcu.config.php: true
         apps.config.php: true
         autoconfig.php: false
-        redis.config.php: true
+        redis.config.php: false
         smtp.config.php: true
       configs:
         custom.config.php: |-
@@ -129,6 +129,4 @@ spec:
         enabled: true
         existingClaim: nextcloud-data
     rbac:
-      enabled: true
-    redis:
       enabled: true
