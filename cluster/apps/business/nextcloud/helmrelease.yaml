@@ -123,6 +123,15 @@ spec:
                 0 => 'HTTP_X_FORWARDED_FOR',
               ),
           );
+    internalDatabase:
+      enabled: false
+    externalDatabase:
+      type: postgresql
+      host: nextcloud-postgresql
+      username: nextcloud
+      database: nextcloud
+      password: "${SECRET_NEXTCLOUD_DB_PASSWORD}"
+
     persistence:
       enabled: true
       existingClaim: nextcloud-config
