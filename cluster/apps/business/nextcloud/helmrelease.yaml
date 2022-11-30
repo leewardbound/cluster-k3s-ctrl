@@ -131,6 +131,9 @@ spec:
       username: nextcloud
       database: nextcloud
       password: "${SECRET_NEXTCLOUD_DB_PASSWORD}"
+      existingSecret:
+        enabled: true
+        secretName: nextcloud-db
 
     persistence:
       enabled: true

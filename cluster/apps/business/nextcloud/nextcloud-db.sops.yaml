@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: nextcloud-db
+    namespace: nextcloud
+type: Opaque
+data:
+    username: ENC[AES256_GCM,data:RRxr4KYZaAhL,iv:s2odeW1wfXHcsWKVjph0pmML81FWvjCqoPtohJplnGM=,tag:04wPmwm5NV5EaWElHo9Ljg==,type:str]
+    password: ENC[AES256_GCM,data:SqaoUCbwPbHb2TCwh1A=,iv:eggM5gVu+LAAhKsgCdJATiEPVFrhJhECOQmwCZeES3M=,tag:ltM8MywpX8nq2ipKt/y3Ng==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age168rnvw24yn8722y6lnlax5rzvwpxqunaxdjef9vwjpkay8gyt3ssj4lqgc
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBpVWxsdkFETG0wdFpLaVhP
+            Q0gvS1JvWnMyOCtTK2E5LzFkV2xKSlVPYWdBCnBQZTVXNGs0Q240NzdTTnd6Nkhv
+            VXpkMDYwVm4xeGZGUFlNWWpDMkxBSVEKLS0tIGVhWkpYS1RoTSs0Wm1MSXNqUEta
+            b3dINXZEMzRURUhVUWc1TnJUZ04xd1kKaD7WstkS1Ew8cs20+8xQTYO8wa1Fou1y
+            lVou2/bugyyMRJyk12c1dcyaNp6V0d3wnrFSrRoU02YzaHnZlG99NA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-11-30T23:53:45Z"
+    mac: ENC[AES256_GCM,data:Sm3XaBOZlzDCHcY5qRB9TGVfwnvX23ZncAKVuDooS64V9GJWR+dsTnDKwKGARSq15WUMY5AhhRkwY3lvU0VAQN/13uEc62Gs8Sh/8Xud8SCxQ7aC+CUMQAg9KuhrP6YTMgv3Oj6C0V7dfB3rvZgVkih5AJ8bDDPRTUEgLr+aNVM=,iv:9TsO69FBpnKiO5RLLKdMoU/2nbMyq+pqBLaeGXGg/4Q=,tag:iue6BvUnTakGrGK8dGjhwg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
