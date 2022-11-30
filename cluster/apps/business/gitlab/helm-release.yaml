@@ -91,6 +91,10 @@ spec:
         minReplicas: 1
         maxReplicas: 1
       gitlab-shell:
+        service:
+          type: LoadBalancer
+          externalTrafficPolicy: Local
+          loadBalancerIP: "${SVC_GITLAB_ADDR}"
         minReplicas: 1
         maxReplicas: 1
       gitlab-pages:

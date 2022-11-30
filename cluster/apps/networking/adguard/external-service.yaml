@@ -12,6 +12,6 @@ spec:
   externalName: 10.20.30.1
   ports:
     - name: http
-      port: &port 3010
+      port: &port 3000
       protocol: TCP
       targetPort: *port
