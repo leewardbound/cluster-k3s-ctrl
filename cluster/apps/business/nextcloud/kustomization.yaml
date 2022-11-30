@@ -5,4 +5,4 @@ resources:
   - cronjob.yaml
   - helmrelease.yaml
   - pvc.yaml
-  - secret.sops.yaml
+  - namespace.yaml
