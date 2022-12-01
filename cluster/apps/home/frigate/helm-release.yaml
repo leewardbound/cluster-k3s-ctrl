@@ -150,7 +150,7 @@ spec:
               frigate_backyard:
                 ffmpeg:
                   inputs:
-                  - path: "rtsp://${SECRET_FRIGATE_CAMERA_AUTH}@10.20.30.151/Streaming/Channels/1/"
+                  - path: "rtsp://${SECRET_FRIGATE_CAMERA_AUTH}@10.20.30.151/Streaming/Channels/101/"
                     roles:
                       - rtmp
                       - record

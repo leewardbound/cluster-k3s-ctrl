@@ -134,6 +134,8 @@ spec:
       existingSecret:
         enabled: true
         secretName: nextcloud-db
+        usernameKey: username
+        passwordKey: password
 
     persistence:
       enabled: true
