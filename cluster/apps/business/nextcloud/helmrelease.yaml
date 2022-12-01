@@ -171,7 +171,13 @@ spec:
       failureThreshold: 3
       successThreshold: 1
     startupProbe:
-      enabled: true
+      # !IMPORTANT! You probably need to enable StartupProbe with these settings
+      # in order for Nextcloud to successfully install the first time!
+      # The 30 second delay is far too long, so i leave it disabled since my nextcloud
+      # is already installed, but during installation, the migrations can sometimes take 60+ seconds!
+      # If the startup probe is not enabled, the readiness probe will cause the pod to get killed during the migrations
+      # and you will be left with a broken installation!
+      enabled: false
       initialDelaySeconds: 30
       periodSeconds: 10
       timeoutSeconds: 5
