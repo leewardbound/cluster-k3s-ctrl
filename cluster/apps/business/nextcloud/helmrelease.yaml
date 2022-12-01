@@ -128,10 +128,9 @@ spec:
     externalDatabase:
       enabled: true
       type: postgresql
-      host: nextcloud-postgresql-hl
+      host: nextcloud-postgresql
       username: nextcloud
       database: nextcloud
-      password: "${SECRET_NEXTCLOUD_DB_PASSWORD}"
       existingSecret:
         enabled: true
         secretName: nextcloud-db
