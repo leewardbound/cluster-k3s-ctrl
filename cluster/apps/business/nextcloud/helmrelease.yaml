@@ -89,7 +89,7 @@ spec:
         domain: ${SECRET_PUBLIC_DOMAIN}
         smtp:
           host: ${SECRET_SES_SMTP_HOST}
-          port: 25
+          port: 465
           authtype: LOGIN
           name: ${SECRET_SES_ACCESS_KEY}
           password: ${SECRET_SES_SECRET_KEY}
