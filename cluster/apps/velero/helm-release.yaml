@@ -74,6 +74,8 @@ spec:
             - uptime-kuma
             - vaultwarden
             - paperless-ngx
+            - gitlab
+            - nextcloud
             - business
   valuesFrom:
     - kind: Secret
