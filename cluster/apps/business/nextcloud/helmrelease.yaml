@@ -126,6 +126,7 @@ spec:
     internalDatabase:
       enabled: false
     externalDatabase:
+      enabled: true
       type: postgresql
       host: nextcloud-postgresql-hl
       username: nextcloud
