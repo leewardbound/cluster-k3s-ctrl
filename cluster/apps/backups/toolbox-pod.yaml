@@ -2,8 +2,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: leeward-backups-toolbox-pod
-  namespace: home
+  name: backups-toolbox-pod
+  namespace: backups
 spec:
   containers:
     - name: container
@@ -17,7 +17,13 @@ spec:
       volumeMounts:
         - name: leeward-backups
           mountPath: /backups
+        - name: rclone-config
+          mountPath: /config/rclone
+          readOnly: true
   volumes:
     - name: leeward-backups
       persistentVolumeClaim:
         claimName: leeward-backups
+    - name: rclone-config
+      secret:
+        secretName: rclone-config

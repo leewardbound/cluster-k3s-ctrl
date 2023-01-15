@@ -5,8 +5,8 @@ metadata:
     namespace: nextcloud
 type: Opaque
 stringData:
-    username: ENC[AES256_GCM,data:Yz6K7j+jwiat,iv:r4JjCx2DDEupkYc6OFHbAJ2Y53jP8rvb5nZEPKvnMJI=,tag:O8WdweDJwY8rpkShOcdPHg==,type:str]
-    password: ENC[AES256_GCM,data:Ctv3W6+1FoRGwQ+xwYQ=,iv:eHmfYjSsolXUgMtnHJE1QpZGjG05O6PFe5ea3JDQYkw=,tag:/nhsGmIpSdtev8r/NUA7tA==,type:str]
+    username: ENC[AES256_GCM,data:i90n29zsKpHq,iv:5p6je7S5ob21uXkcerjZZJaULF0/Tjsh6yA0e6OPMUw=,tag:CAR3aQ6oOJXNVvcoI/G5yA==,type:str]
+    password: ENC[AES256_GCM,data:rF5HQpCFC86hoNmWXIo=,iv:YUPfoQzj7LOzFamEy+eCHhfKs9lYRrarvmSfIz9TH5M=,tag:MwVaytRKSo9GlRWc3/GLRA==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -16,14 +16,14 @@ sops:
         - recipient: age168rnvw24yn8722y6lnlax5rzvwpxqunaxdjef9vwjpkay8gyt3ssj4lqgc
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYd3lieHJkTHpCd01SR2o1
-            aXByRXoxYzNkaFdSbGRxd3ZVZVdUVFR0cXpzCk10N2Z6SG5GYmg2SUdhOW16eVZG
-            bmc5Z3M5cDAwOCtXa2ZOYTlZRlhpN28KLS0tIFdMSk1tWnNOdVRNV0szYXJTSjBO
-            QW82VzV1S09QS0V1Q1l4ay9Qcmo4UDQKoAtgtGA7HtIy6xbnFAB5eSKiSp6sJSgZ
-            APB0pRRvPUPdT/t+zuG/sf6pQjwtwgXFdSeYk5fZWVWgfzdqIMWKcw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAzU0gyR2hPRi9WT2pRZGgw
+            ZE4xNnNha3Z4QnVSUmN1QVVDQ3Nmdjdja2k0CkVOeEhoeHRSeGlWZzdrd0FGVEtV
+            a2dyYXFKOVlxZzZQcGppWXpkTUp5TUEKLS0tIGMxdWVHTERCUXN3M0ZtaE04YkZo
+            RU5nRElYMThvNnIyYytrcE9CWHc2a0kKr87qepSqwA7RicuUXva3LAUEv3mS9Rge
+            23YNWm0NOKd2vjjugeyozDp8xOEH1sU3AQvUi4yzgyslGRiDUXpBbw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-12-01T02:08:41Z"
-    mac: ENC[AES256_GCM,data:q03wswynDPFpNAcGdXlmhZ4aYcPfKdci+OMEmV46gqRbOM+llpwpmtI8fWSuHdVVspWu8I+UZ+lWgJ4oZjj9/XtLEFQf6VP19V45ddSIIeqy4nY3RwYWeG5KxfHkwWrLKwt/AvcCBC+I0+2pfzmW1RENUH6upjxLkdBzoebzv0A=,iv:ENruQhVF+ROamVCwCVydI/uzt7ynmbgaa9ctiycOOFw=,tag:9K83/UH+gwyQKSDPso4znA==,type:str]
+    lastmodified: "2023-01-15T20:40:36Z"
+    mac: ENC[AES256_GCM,data:fNmOy4zY3OdblkG31CFXU2Hrk67t1/vtMJhp7tVERUtYK4EG1GBOLUQEJWhbxTfPA4lr32pT4AJB730TeLH/h3TFg/Qwpjdr9TSpbx9wlkVF1rIcwnJHiQaYcZ0M16gyA5oAo5eTdSWa2oJZ2ZzFYrewzs+RJGJPZTYGkg0Lhi0=,iv:0+QXWI/J+U0MJOtsM0yekrdbiSktzFFVfjuOWnv/pqM=,tag:62Vum3Y5crXgo2GsvJIXpg==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.1

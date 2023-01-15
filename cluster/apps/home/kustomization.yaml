@@ -8,7 +8,6 @@ resources:
   - frigate
   - home-assistant
   - esphome
-  - leeward-backups
 
   #- zigbee2mqtt
   - zwavejs2mqtt
