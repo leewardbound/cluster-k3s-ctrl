@@ -59,6 +59,6 @@ spec:
         memory: 249Mi
       limits:
         memory: 265Mi
-    env:
-      PUID: "1000"
-      PGID: "1000"
+    #env:
+      #PUID: "1000"
+      #PGID: "1000"

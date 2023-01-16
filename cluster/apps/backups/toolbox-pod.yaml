@@ -17,6 +17,8 @@ spec:
       volumeMounts:
         - name: leeward-backups
           mountPath: /backups
+        - name: syncthing-config
+          mountPath: /config/syncthing
         - name: rclone-config
           mountPath: /config/rclone
           readOnly: true
@@ -27,3 +29,6 @@ spec:
     - name: rclone-config
       secret:
         secretName: rclone-config
+    - name: syncthing-config
+      persistentVolumeClaim:
+        claimName: syncthing-config
