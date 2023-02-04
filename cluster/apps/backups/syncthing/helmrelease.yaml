@@ -27,6 +27,14 @@ spec:
     image:
       repository: syncthing/syncthing
       tag: 1.23.0
+    ingress:
+      enabled: true
+      ingressClassName: "nginx-private"
+      hostname: sync.${SECRET_PUBLIC_DOMAIN}
+      tls:
+        - hosts: ["sync.${SECRET_PUBLIC_DOMAIN}"]
+          secretName: "syncthing-tls"
+
     service:
       main:
         ports:

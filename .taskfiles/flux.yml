@@ -15,6 +15,11 @@ tasks:
       - flux check --pre
       - kubectl apply --kustomize=./cluster/base/flux-system || kubectl apply --kustomize=./cluster/base/flux-system
       - cat $SOPS_AGE_KEY_FILE | kubectl -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
+      - task flux:remove-local-path-default
+
+  remove-local-path-default:
+    desc: Unset the local-path storage class as the default
+    cmds:
       - kubectl patch sc local-path -p='{"metadata":{"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 
   sync-status:
