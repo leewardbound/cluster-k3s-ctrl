@@ -62,21 +62,17 @@ spec:
       daily-backup:
         schedule: 0 6 * * *
         template:
-          ttl: 336h
-          includedNamespaces:
-            - cert-manager
-            - home
-            - networking
+          ttl: 3d
+          excludedNamespaces:
+            - backups # Don't back this one up daily, only monthly
+            - monitoring
+      monthly-backup:
+        schedule: 0 2 5 * *
+        template:
+          ttl: 90d
+          excludedNamespaces:
             - monitoring
 
-            # Business Apps
-            - authentik
-            - uptime-kuma
-            - vaultwarden
-            - paperless-ngx
-            - gitlab
-            - nextcloud
-            - business
   valuesFrom:
     - kind: Secret
       name: s3-eu-north-1

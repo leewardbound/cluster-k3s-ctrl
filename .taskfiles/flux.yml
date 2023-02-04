@@ -22,6 +22,11 @@ tasks:
     cmds:
       - kubectl patch sc local-path -p='{"metadata":{"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 
+  exclude-redis-from-backup:
+    desc: add the velero ignore tag to all redis pvc
+    cmds:
+      - kubectl get pvc -A | grep redis | awk '{print $1, "pvc/" $2}' | xargs -I '{}' bash -c 'kubectl label -n {} velero.io/exclude-from-backup=true'
+
   sync-status:
     desc: Get status of kustomization sync
     cmds:
