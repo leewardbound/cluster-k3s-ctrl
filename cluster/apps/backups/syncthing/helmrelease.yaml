@@ -31,15 +31,18 @@ spec:
       main:
         enabled: true
         ingressClassName: "nginx-private"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/group: "business"
         hosts:
-          - host: sync.${SECRET_PUBLIC_DOMAIN}
+          - host: sync.${SECRET_PRIVATE_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
                 service:
                   port: 8384
         tls:
-          - hosts: ["sync.${SECRET_PUBLIC_DOMAIN}"]
+          - hosts: ["sync.${SECRET_PRIVATE_DOMAIN}"]
             secretName: "syncthing-tls"
 
     service:
