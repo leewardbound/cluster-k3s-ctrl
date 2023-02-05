@@ -62,14 +62,14 @@ spec:
       daily-backup:
         schedule: 0 6 * * *
         template:
-          ttl: 3d
+          ttl: 72h
           excludedNamespaces:
             - backups # Don't back this one up daily, only monthly
             - monitoring
       monthly-backup:
         schedule: 0 2 5 * *
         template:
-          ttl: 90d
+          ttl: 2160h # 90 days
           excludedNamespaces:
             - monitoring
 
