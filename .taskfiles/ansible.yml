@@ -59,6 +59,12 @@ tasks:
     cmds:
       - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line -m 'ping'"
 
+  adhoc:docker-system-prune:
+    desc: Prune all the docker images and reclaim disk space
+    dir: provision/ansible
+    cmds:
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml -a 'docker system prune -a -f' --become"
+
   adhoc:uptime:
     desc: Uptime of all the hosts
     dir: provision/ansible
