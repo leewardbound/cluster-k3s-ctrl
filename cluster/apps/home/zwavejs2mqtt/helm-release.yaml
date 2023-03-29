@@ -56,7 +56,7 @@ spec:
       usb:
         enabled: true
         type: hostPath
-        hostPath: /dev/ttyUSB1
+        hostPath: /dev/ttyUSB0
         hostPathType: CharDevice
     affinity:
       nodeAffinity:
