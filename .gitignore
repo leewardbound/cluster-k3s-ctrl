@@ -18,3 +18,4 @@ terraform.tfstate*
 
 ref/*
 .idea
+.dead-pods
