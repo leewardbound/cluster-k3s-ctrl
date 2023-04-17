@@ -8,6 +8,7 @@ resources:
   - authentik
   - vaultwarden
   - uptime-kuma
+  - oneuptime
 
   # Business Apps - keep these on-prem
   - penpot
