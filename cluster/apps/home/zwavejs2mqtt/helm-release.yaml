@@ -56,8 +56,9 @@ spec:
       usb:
         enabled: true
         type: hostPath
-        hostPath: /dev/ttyUSB0
-        hostPathType: CharDevice
+        hostPath: /dev/ttyUSB8
+        mountPath: /dev/ttyUSB8
+        #hostPathType: CharDevice
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
