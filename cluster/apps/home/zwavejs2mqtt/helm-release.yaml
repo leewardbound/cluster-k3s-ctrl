@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: zwavejs/zwavejs2mqtt
-      tag: 8.13.1
+      tag: 8.14.2
     env:
       TZ: "${TIMEZONE}"
     service:
