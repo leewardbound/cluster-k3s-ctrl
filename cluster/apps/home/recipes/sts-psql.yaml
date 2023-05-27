@@ -90,7 +90,7 @@ spec:
           terminationMessagePolicy: File
           volumeMounts:
             - mountPath: /bitnami/postgresql
-              name: data
+              name: recipes-data
       dnsPolicy: ClusterFirst
       initContainers:
         - command:
