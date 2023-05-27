@@ -13,7 +13,7 @@ metadata:
   name: recipes
   namespace: home
 spec:
-  ingressClassname: "nginx-public"
+  ingressClassName: "nginx-public"
   rules:
     - host: recipes.${SECRET_PUBLIC_DOMAIN}
       http:
