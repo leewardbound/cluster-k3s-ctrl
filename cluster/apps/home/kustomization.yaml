@@ -7,6 +7,7 @@ resources:
   - frigate
   - home-assistant
   - esphome
+  - recipes
 
   #- zigbee2mqtt
   - zwavejs2mqtt
