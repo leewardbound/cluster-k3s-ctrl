@@ -1,0 +1,44 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx-public
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+    external-dns/is-public: "true"
+    hajimari.io/enable: "true"
+    hajimari.io/group: "home"
+    hajimari.io/icon: "food"
+  name: recipes
+  namespace: home
+spec:
+  rules:
+    - host: recipes.${SECRET_PUBLIC_DOMAIN}
+      http:
+        paths:
+          - backend:
+              service:
+                name: recipes
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix
+          - backend:
+              service:
+                name: recipes
+                port:
+                  number: 80
+            path: /media
+            pathType: Prefix
+          - backend:
+              service:
+                name: recipes
+                port:
+                  number: 80
+            path: /static
+            pathType: Prefix
+  tls:
+    - hosts:
+        - recipes.${SECRET_PUBLIC_DOMAIN}
+      secretName: recipes-tls

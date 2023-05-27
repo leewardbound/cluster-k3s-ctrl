@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: recipes-media
+  namespace: home
+  labels:
+    app: recipes
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: cephfs-hdd
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: recipes-static
+  namespace: home
+  labels:
+    app: recipes
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: cephfs-hdd
