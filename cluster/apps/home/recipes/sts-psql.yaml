@@ -132,4 +132,4 @@ spec:
           requests:
             storage: 2Gi
         volumeMode: Filesystem
-        storageClassName: rook-ceph-block
+        storageClassName: ceph-block
