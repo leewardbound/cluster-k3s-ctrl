@@ -27,6 +27,8 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       ZIGBEE2MQTT_DATA: /data
+    securityContext:
+      privileged: true
     ingress:
       main:
         enabled: true
@@ -44,6 +46,11 @@ spec:
         enabled: true
         existingClaim: zigbee2mqtt-config-v2
         mountPath: "/data"
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/ttyUSB7
+        mountPath: /dev/ttyUSB7
     resources:
       requests:
         memory: 100Mi
@@ -72,3 +79,13 @@ spec:
         pan_id: GENERATE
       frontend:
         port: 8080
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: feature.node.kubernetes.io/usb-ff_18d1_9302.present
+                  operator: In
+                  values:
+                    - "true"
