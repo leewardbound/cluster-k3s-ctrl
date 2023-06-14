@@ -5,12 +5,10 @@ resources:
   - namespace.yaml
 
   # TODO: Move these to cloud for uptime assurances
-  - authentik
   - vaultwarden
   - uptime-kuma
 
   # Business Apps - keep these on-prem
   - penpot
   - nocodb
-  - gitlab
   - paperless-ngx
