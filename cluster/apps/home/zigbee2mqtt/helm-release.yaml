@@ -75,6 +75,7 @@ spec:
           - console
         network_key: GENERATE
         pan_id: GENERATE
+      frontend: true
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
