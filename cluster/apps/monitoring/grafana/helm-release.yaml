@@ -60,6 +60,7 @@ spec:
         host: ${SECRET_SES_SMTP_HOST}
         user: ${SECRET_SES_ACCESS_KEY}
         password: ${SECRET_SES_SECRET_KEY}
+        from_address: ${SECRET_SES_SMTP_FROM_EMAIL}
 
     dashboardProviders:
       dashboardproviders.yaml:
