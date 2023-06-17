@@ -57,7 +57,7 @@ spec:
         disable_login_form: false
       smtp:
         enabled: true
-        host: ${SECRET_SES_SMTP_HOST}
+        host: ${SECRET_SES_SMTP_HOST}:${SECRET_SES_SMTP_PORT}
         user: ${SECRET_SES_ACCESS_KEY}
         password: ${SECRET_SES_SECRET_KEY}
         from_address: ${SECRET_SES_SMTP_FROM_EMAIL}
