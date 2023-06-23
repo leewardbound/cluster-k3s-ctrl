@@ -150,7 +150,7 @@ spec:
                 topologyKey: kubernetes.io/hostname
       persistence:
         size: 10Gi
-        storageClass: rook-ceph-block
+        storageClass: ceph-block
       tolerations:
         - key: "arm"
           operator: "Exists"
@@ -168,7 +168,7 @@ spec:
                 topologyKey: kubernetes.io/hostname
       persistence:
         size: 10Gi
-        storageClass: rook-ceph-block
+        storageClass: ceph-block
       extraVolumeMounts:
         - name: rules
           mountPath: /rules
@@ -182,7 +182,7 @@ spec:
     backend:
       replicas: 3
       persistence:
-        storageClass: rook-ceph-block
+        storageClass: ceph-block
       extraVolumeMounts:
         - name: rules
           mountPath: /rules/fake
