@@ -15,8 +15,6 @@ spec:
         name: vector-charts
         namespace: flux-system
       interval: 5m
-  dependsOn:
-    - name: vector-aggregator
   install:
     createNamespace: true
     remediation:
