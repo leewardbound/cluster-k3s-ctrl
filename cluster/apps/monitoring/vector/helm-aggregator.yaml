@@ -68,7 +68,7 @@ spec:
           type: loki
           inputs:
             - journal_logs
-          endpoint: http://loki-gateway.monitoring.svc.cluster.local/:80
+          endpoint: http://loki-gateway.monitoring.svc.cluster.local:80
           encoding:
             codec: json
           batch:
@@ -83,7 +83,7 @@ spec:
           type: loki
           inputs:
             - kubernetes_logs_remap
-          endpoint: http://loki-gateway.monitoring.svc.cluster.local/:80
+          endpoint: http://loki-gateway.monitoring.svc.cluster.local:80
           encoding:
             codec: json
           batch:
@@ -105,5 +105,9 @@ spec:
           address: 0.0.0.0:9090
     service:
       enabled: true
+      type: LoadBalancer
+      loadBalancerIP: "${SVC_VECTOR_ADDR}"
+      annotations:
+        metallb.universe.tf/allow-shared-ip: vector
     podMonitor:
       enabled: true
