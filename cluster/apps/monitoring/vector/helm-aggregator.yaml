@@ -105,9 +105,5 @@ spec:
           address: 0.0.0.0:9090
     service:
       enabled: true
-      type: LoadBalancer
-      loadBalancerIP: "${SVC_VECTOR_ADDR}"
-      annotations:
-        metallb.universe.tf/allow-shared-ip: vector
     podMonitor:
       enabled: true
