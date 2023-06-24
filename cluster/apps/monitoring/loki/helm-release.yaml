@@ -27,6 +27,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    global:
+      dnsService: coredns
     loki:
       structuredConfig:
         auth_enabled: false
