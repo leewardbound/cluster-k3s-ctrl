@@ -106,18 +106,8 @@ spec:
     service:
       enabled: true
       type: LoadBalancer
-      loadBalancerIP: 10.0.6.54
+      loadBalancerIP: "${SVC_VECTOR_ADDR}"
       annotations:
         metallb.universe.tf/allow-shared-ip: vector
     podMonitor:
       enabled: true
-  postRenderers:
-    - kustomize:
-        patches:
-          - target:
-              kind: Service
-              name: vector-aggregator
-            patch: |-
-              - op: replace
-                path: /spec/externalTrafficPolicy
-                value: Local
