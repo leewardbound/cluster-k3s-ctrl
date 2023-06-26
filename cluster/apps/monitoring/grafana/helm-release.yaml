@@ -85,7 +85,7 @@ spec:
           - name: Prometheus
             type: prometheus
             access: proxy
-            url: http://thanos-query:9090/
+            url: http://kube-prometheus-stack-prometheus:9090/
             isDefault: true
           - name: Loki
             type: loki
@@ -97,6 +97,15 @@ spec:
         minio:
           gnetId: 13502
           revision: 10
+          datasource: Prometheus
+        cert-manager:
+          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+          datasource: Prometheus
+        flux-cluster:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
+          datasource: Prometheus
+        flux-control-plane:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
           datasource: Prometheus
     sidecar:
       dashboards:
@@ -134,4 +143,5 @@ spec:
       create: true
       autoMount: true
     persistence:
-      enabled: false
+      enabled: true
+      storageClassName: local-path
