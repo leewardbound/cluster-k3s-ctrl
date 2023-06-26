@@ -9,6 +9,6 @@ resources:
   - uptime-kuma
 
   # Business Apps - keep these on-prem
-  - penpot
+  #- penpot
   - nocodb
   - paperless-ngx
