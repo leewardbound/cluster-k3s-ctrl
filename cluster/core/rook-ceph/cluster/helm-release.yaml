@@ -107,7 +107,6 @@ spec:
         storageClass:
           enabled: true
           name: ceph-norepl
-          isDefault: true
           reclaimPolicy: Delete
           allowVolumeExpansion: true
           parameters:

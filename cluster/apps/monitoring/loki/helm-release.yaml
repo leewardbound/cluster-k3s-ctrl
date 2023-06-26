@@ -27,8 +27,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    global:
-      dnsService: kube-dns
     loki:
       structuredConfig:
         auth_enabled: false
