@@ -220,7 +220,7 @@ spec:
                 resources:
                   requests:
                     storage: 20Gi
-          additionalScrapeConfigs:
+          additionalScrapeConfigs: []
             #- job_name: zrepl
               #static_configs:
                 #- targets: [ "expanse.turbo.ac:9811" ] # nas
