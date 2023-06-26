@@ -75,7 +75,7 @@ spec:
           storage:
             type: local
             local:
-              directory: /rules
+              directory: /tmp/rules
           rule_path: /tmp/scratch
           ring:
             kvstore:
