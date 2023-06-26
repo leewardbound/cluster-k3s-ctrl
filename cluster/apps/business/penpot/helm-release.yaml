@@ -27,8 +27,8 @@ spec:
       nameOverride: *app
     image:
       repository: penpotapp
-      tag: 1.15.4-beta
-      tagBackend: 1.16.0-beta
+      tag: 1.18.4
+      tagBackend: 1.18.4
 
     ingress:
       enabled: true
