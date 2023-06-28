@@ -59,6 +59,9 @@ spec:
         - module: icmp
           name: ziti
           url: 10.20.30.113
+        - module: icmp
+          name: nova
+          url: 10.20.30.114
     prometheusRule:
       enabled: true
       additionalLabels:
