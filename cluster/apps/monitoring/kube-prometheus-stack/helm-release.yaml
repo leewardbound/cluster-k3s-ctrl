@@ -109,6 +109,11 @@ spec:
               targetLabel: kubernetes_node
     kubelet:
       enabled: true
+      endpoints:
+        - 10.20.30.111
+        - 10.20.30.112
+        - 10.20.30.113
+        - 10.20.30.114
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate metrics
