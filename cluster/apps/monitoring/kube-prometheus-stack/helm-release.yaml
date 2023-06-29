@@ -62,7 +62,7 @@ spec:
             - receiver: "null"
               matchers:
                 - alertname =~ "InfoInhibitor"
-            - receiver: "null"
+            - receiver: "slack"
               matchers:
                 - severity = "critical"
               continue: true
