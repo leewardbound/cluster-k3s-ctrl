@@ -78,6 +78,10 @@ spec:
           limits:
             cpu: 2000m
             memory: 2048Mi
+        mgr:
+          limits:
+            cpu: "2000m"
+            memory: "2Gi"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
