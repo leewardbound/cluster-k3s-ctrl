@@ -88,7 +88,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: ceph-norepl
+              storageClassName: ceph-block
               resources:
                 requests:
                   storage: 1Gi
@@ -217,7 +217,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: ceph-norepl
+              storageClassName: ceph-block
               resources:
                 requests:
                   storage: 20Gi
