@@ -198,30 +198,30 @@ spec:
         enabled: true
         thanosServiceMonitor:
           enabled: true
-        prometheusSpec:
-          replicas: 3
-          replicaExternalLabelName: __replica__
-          ruleSelectorNilUsesHelmValues: false
-          serviceMonitorSelectorNilUsesHelmValues: false
-          podMonitorSelectorNilUsesHelmValues: false
-          probeSelectorNilUsesHelmValues: false
-          enableAdminAPI: true
-          walCompression: true
-          thanos:
-            image: quay.io/thanos/thanos:v0.31.0
-            objectStorageConfig:
-              name: thanos-objstore-secret
-              key: objstore.yml
-          retention: 2d
-          retentionSize: 15GB
-          storageSpec:
-            volumeClaimTemplate:
-              spec:
-                storageClassName: local-path
-                resources:
-                  requests:
-                    storage: 20Gi
-          additionalScrapeConfigs: []
-            #- job_name: zrepl
-              #static_configs:
-                #- targets: [ "expanse.turbo.ac:9811" ] # nas
+      prometheusSpec:
+        replicas: 3
+        replicaExternalLabelName: __replica__
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        enableAdminAPI: true
+        walCompression: true
+        thanos:
+          image: quay.io/thanos/thanos:v0.31.0
+          objectStorageConfig:
+            name: thanos-objstore-secret
+            key: objstore.yml
+        retention: 2d
+        retentionSize: 15GB
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: local-path
+              resources:
+                requests:
+                  storage: 20Gi
+        additionalScrapeConfigs: []
+          #- job_name: zrepl
+            #static_configs:
+              #- targets: [ "expanse.turbo.ac:9811" ] # nas
