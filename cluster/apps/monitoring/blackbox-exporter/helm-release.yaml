@@ -49,36 +49,8 @@ spec:
           release: prometheus
         interval: 2m
         scrapeTimeout: 30s
-      targets:
-        - module: icmp
-          name: enterprise
-          url: 10.20.30.111
-        - module: icmp
-          name: vega
-          url: 10.20.30.112
-        - module: icmp
-          name: ziti
-          url: 10.20.30.113
-        - module: icmp
-          name: nova
-          url: 10.20.30.114
     prometheusRule:
       enabled: true
       additionalLabels:
         app: prometheus-operator
         release: prometheus
-      rules:
-        - alert: HostDown
-          expr: probe_success == 0
-          for: 1m
-          labels:
-            severity: critical
-          annotations:
-            message: The host {{"{{ $labels.target }}"}} is currently unreachable
-        - alert: SlowResponseTime
-          annotations:
-            message: The response time for {{"{{ $labels.target }}"}} has been greater than 30 seconds for 5 minutes.
-          expr: probe_duration_seconds > 30
-          for: 5m
-          labels:
-            severity: warning

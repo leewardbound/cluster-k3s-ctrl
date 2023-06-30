@@ -8,3 +8,5 @@ resources:
   - loki
   - vector
   - blackbox-exporter
+  - node-problem-detector
+  - speedtest-exporter
