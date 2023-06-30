@@ -196,8 +196,8 @@ spec:
               - *host
       thanosService:
         enabled: true
-        thanosServiceMonitor:
-          enabled: true
+      thanosServiceMonitor:
+        enabled: true
       prometheusSpec:
         replicas: 3
         replicaExternalLabelName: __replica__
@@ -217,7 +217,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-path
+              storageClassName: ceph-norepl
               resources:
                 requests:
                   storage: 20Gi
