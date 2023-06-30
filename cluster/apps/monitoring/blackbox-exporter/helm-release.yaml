@@ -49,8 +49,3 @@ spec:
           release: prometheus
         interval: 2m
         scrapeTimeout: 30s
-    prometheusRule:
-      enabled: true
-      additionalLabels:
-        app: prometheus-operator
-        release: prometheus
