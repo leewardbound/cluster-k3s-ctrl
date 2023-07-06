@@ -1,0 +1,9 @@
+---
+apiVersion: v2
+description: reth unofficial helm chart
+name: reth
+version: 1.0.0
+appVersion: 0.1.0-alpha.1
+maintainers:
+  - name: leewardbound
+    email: leeward@boundcorp.net

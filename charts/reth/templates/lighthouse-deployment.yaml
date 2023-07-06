@@ -1,0 +1,93 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "lighthouse"
+  labels:
+    app.kubernetes.io/component: "lighthouse"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: "lighthouse"
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: "lighthouse"
+    spec:
+      {{- if $.Values.image.lighthouse.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml $.Values.image.lighthouse.pullSecrets | nindent 8 }}
+      {{- end }}
+      {{- with $.Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $.Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      priorityClassName: {{ $.Values.priorityClassName }}
+      containers:
+        - name: {{ $.Chart.Name }}
+          image: "{{ $.Values.image.lighthouse.repository }}:{{ $.Values.image.lighthouse.tag }}"
+          imagePullPolicy: "{{ $.Values.image.lighthouse.pullPolicy }}"
+          command:
+            - lighthouse
+            - bn
+            - --http
+            - --http-address
+            - 0.0.0.0
+            - --execution-endpoint
+            - http://reth-authrpc:8551
+            - --metrics
+            - --metrics-address
+            - 0.0.0.0
+            - --execution-jwt
+            - /root/jwt/jwt.hex
+            - --checkpoint-sync-url
+            - https://mainnet.checkpoint.sigp.io
+
+          ports:
+            - name: httpextra
+              containerPort: 5051
+              protocol: TCP
+            - name: http
+              containerPort: 5052
+              protocol: TCP
+            - name: metrics
+              containerPort: 5054
+              protocol: TCP
+            - name: peering-tcp
+              containerPort: 9000
+              protocol: TCP
+            - name: peering-udp
+              containerPort: 9000
+              protocol: UDP
+
+          {{- if $.Values.livenessProbe.enabled }}
+            {{- with omit $.Values.livenessProbe "enabled" }}
+          livenessProbe:
+                  {{- toYaml . | nindent 12 }}
+                {{- end }}
+              {{- end }}
+
+          {{- if $.Values.readinessProbe.enabled  }}
+              {{- with omit $.Values.readinessProbe "enabled" }}
+          readinessProbe:
+                {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- end }}
+
+          volumeMounts:
+            - mountPath: /root/.local/share/reth/mainnet/db
+              name: reth-data
+            - mountPath: /root/jwt
+              name: reth-jwt
+      volumes:
+        - name: reth-data
+          persistentVolumeClaim:
+            claimName: reth-data
+        - name: reth-jwt
+          persistentVolumeClaim:
+            claimName: reth-jwt

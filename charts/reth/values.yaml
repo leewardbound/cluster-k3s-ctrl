@@ -1,0 +1,46 @@
+# -- Server replicas
+replicas: 1
+# -- Custom priority class for different treatment by the scheduler
+priorityClassName:
+
+image:
+  repository: ghcr.io/paradigmxyz/reth
+  tag: v0.1.0-alpha.1
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+  lighthouse:
+    repository: sigp/lighthouse
+    tag: latest
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+
+env: {}
+
+envFrom: []
+#  - configMapRef:
+#      name: special-config
+
+envValueFrom: {}
+#  BASEROW_VAR_NAME:
+#    secretKeyRef:
+#      key: password
+#      name: my-secret
+
+
+livenessProbe:
+  # -- enables or disables the livenessProbe
+  enabled: false
+  httpGet:
+    # -- liveness probe url path
+    path: /_health/
+    port: http
+  initialDelaySeconds: 50
+  periodSeconds: 10
+
+readinessProbe:
+  enabled: false
+  httpGet:
+    path: /_health/
+    port: http
+  initialDelaySeconds: 50
+  periodSeconds: 10

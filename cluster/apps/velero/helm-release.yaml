@@ -66,12 +66,14 @@ spec:
           excludedNamespaces:
             - backups # Don't back this one up daily, only monthly
             - monitoring
+            - velero
       monthly-backup:
         schedule: 0 2 5 * *
         template:
           ttl: 2160h # 90 days
           excludedNamespaces:
             - monitoring
+            - velero
 
   valuesFrom:
     - kind: Secret

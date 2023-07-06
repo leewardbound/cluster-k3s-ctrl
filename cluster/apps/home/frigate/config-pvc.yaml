@@ -22,7 +22,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
+  storageClassName: cephfs-hdd
   resources:
     requests:
       storage: 500Gi
-  storageClassName: cephfs-hdd

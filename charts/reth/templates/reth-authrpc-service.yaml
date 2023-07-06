@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reth-authrpc
+spec:
+  ports:
+    - port: 8551
+      targetPort: 8551
+      protocol: TCP
+      name: authrpc
+  selector:
+    app.kubernetes.io/component: "reth"
