@@ -5,7 +5,7 @@ metadata:
   name: volsync
   namespace: flux-system
 spec:
-  path: ./volsync
+  path: ./apps/volsync
   prune: true
   sourceRef:
     kind: GitRepository
