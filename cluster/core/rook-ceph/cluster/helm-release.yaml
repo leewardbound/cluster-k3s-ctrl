@@ -63,9 +63,6 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: "enterprise"
-            devices:
-              - name: "sdb"
           - name: "vega"
             devices:
               - name: "sdb"
