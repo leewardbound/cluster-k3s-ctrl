@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - authelia-charts.yaml
   - authentik-charts.yaml
+  - backube.yaml
   - bitnami-charts.yaml
   - bjw-s-charts.yaml
   - crowdsec-charts.yaml
