@@ -20,7 +20,7 @@ metadata:
 spec:
   sourcePVC: vaultwarden-data
   trigger:
-    schedule: ${SECRET_VOLSYNC_SCHEDULE}
+    schedule: "*/6 * * * *"
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 7
