@@ -9,6 +9,7 @@ resources:
   - system-upgrade
   - cert-manager
   - velero
+  - volsync
 
   # Layer 1 -  Telemetry
   - networking

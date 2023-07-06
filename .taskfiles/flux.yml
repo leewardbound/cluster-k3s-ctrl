@@ -54,7 +54,7 @@ tasks:
     cmds:
       - git pull
       - git push -u origin main
-      - task -s flux:sync
+      - task flux:sync
 
   get-chart:
     desc: Get chart health
