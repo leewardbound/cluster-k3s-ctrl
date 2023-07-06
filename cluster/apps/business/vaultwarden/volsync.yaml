@@ -18,7 +18,7 @@ metadata:
   name: vaultwarden
   namespace: vaultwarden
 spec:
-  sourcePVC: config-plex-0
+  sourcePVC: vaultwarden-data
   trigger:
     schedule: ${SECRET_VOLSYNC_SCHEDULE}
   restic:
