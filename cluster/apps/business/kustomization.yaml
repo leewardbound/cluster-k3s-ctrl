@@ -9,6 +9,6 @@ resources:
   - uptime-kuma
 
   # Business Apps - keep these on-prem
-  - penpot/volsync.yaml # penpot helm chart isnt working so i have it manually installed
+  - penpot
   - nocodb
   - paperless-ngx
