@@ -61,8 +61,8 @@ spec:
     pruneIntervalDays: 7
     repository: paperless-ngx-postgresql-restic-target
     cacheCapacity: 10Gi
-    volumeSnapshotClassName: csi-cephfsplugin-snapclass
-    storageClassName: cephfs-hdd
+    volumeSnapshotClassName: csi-rbdplugin-snapclass
+    storageClassName: ceph-block
     retain:
       daily: 7
       monthly: 6

@@ -26,8 +26,8 @@ spec:
     pruneIntervalDays: 7
     repository: frigate-restic-target
     cacheCapacity: 10Gi
-    volumeSnapshotClassName: csi-cephfsplugin-snapclass
-    storageClassName: cephfs-hdd
+    volumeSnapshotClassName: csi-rbdplugin-snapclass
+    storageClassName: ceph-block
     retain:
       daily: 7
       monthly: 6
