@@ -8,3 +8,4 @@ resources:
   - paperless-ngx-postgresql-pvc.yaml
   - redis-helm-release.yaml
   - paperless-ngx-redis-pvc.yaml
+  - volsync.yaml

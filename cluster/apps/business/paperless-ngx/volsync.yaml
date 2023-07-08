@@ -1,0 +1,70 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: v1
+kind: Secret
+metadata:
+  name: paperless-ngx-restic-target
+  namespace: paperless-ngx
+stringData:
+  RESTIC_REPOSITORY: 's3:${SECRET_VOLSYNC_REPOSITORY}/paperless-ngx'
+  RESTIC_PASSWORD: '${SECRET_VOLSYNC_PASSWORD}'
+  AWS_ACCESS_KEY_ID: '${SECRET_VOLSYNC_AWS_ACCESS_KEY_ID}'
+  AWS_SECRET_ACCESS_KEY: '${SECRET_VOLSYNC_AWS_SECRET_ACCESS_KEY}'
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: paperless-ngx
+  namespace: paperless-ngx
+spec:
+  sourcePVC: paperless-ngx-data
+  trigger:
+    schedule: "0 7 * * *"
+  restic:
+    copyMethod: Snapshot
+    pruneIntervalDays: 7
+    repository: paperless-ngx-restic-target
+    cacheCapacity: 10Gi
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    storageClassName: cephfs-hdd
+    retain:
+      daily: 7
+      monthly: 6
+      yearly: 5
+      within: 3d
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: v1
+kind: Secret
+metadata:
+  name: paperless-ngx-postgresql-restic-target
+  namespace: paperless-ngx
+stringData:
+  RESTIC_REPOSITORY: 's3:${SECRET_VOLSYNC_REPOSITORY}/paperless-ngx-postgresql'
+  RESTIC_PASSWORD: '${SECRET_VOLSYNC_PASSWORD}'
+  AWS_ACCESS_KEY_ID: '${SECRET_VOLSYNC_AWS_ACCESS_KEY_ID}'
+  AWS_SECRET_ACCESS_KEY: '${SECRET_VOLSYNC_AWS_SECRET_ACCESS_KEY}'
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: paperless-ngx-postgresql
+  namespace: paperless-ngx
+spec:
+  sourcePVC: paperless-ngx-postgresql
+  trigger:
+    schedule: "0 7 * * *"
+  restic:
+    copyMethod: Snapshot
+    pruneIntervalDays: 7
+    repository: paperless-ngx-postgresql-restic-target
+    cacheCapacity: 10Gi
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    storageClassName: cephfs-hdd
+    retain:
+      daily: 7
+      monthly: 6
+      yearly: 5
+      within: 3d

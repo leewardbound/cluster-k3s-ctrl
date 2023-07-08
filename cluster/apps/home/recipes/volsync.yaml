@@ -1,0 +1,105 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: v1
+kind: Secret
+metadata:
+  name: recipes-postgresql-restic-target
+  namespace: home
+stringData:
+  RESTIC_REPOSITORY: 's3:${SECRET_VOLSYNC_REPOSITORY}/recipes-postgresql'
+  RESTIC_PASSWORD: '${SECRET_VOLSYNC_PASSWORD}'
+  AWS_ACCESS_KEY_ID: '${SECRET_VOLSYNC_AWS_ACCESS_KEY_ID}'
+  AWS_SECRET_ACCESS_KEY: '${SECRET_VOLSYNC_AWS_SECRET_ACCESS_KEY}'
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: recipes-postgresql
+  namespace: home
+spec:
+  sourcePVC: recipes-data-recipes-postgresql-0
+  trigger:
+    schedule: "0 7 * * *"
+  restic:
+    copyMethod: Snapshot
+    pruneIntervalDays: 7
+    repository: recipes-postgresql-restic-target
+    cacheCapacity: 10Gi
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    storageClassName: cephfs-hdd
+    retain:
+      daily: 7
+      monthly: 6
+      yearly: 5
+      within: 3d
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: v1
+kind: Secret
+metadata:
+  name: recipes-media-restic-target
+  namespace: home
+stringData:
+  RESTIC_REPOSITORY: 's3:${SECRET_VOLSYNC_REPOSITORY}/recipes-media'
+  RESTIC_PASSWORD: '${SECRET_VOLSYNC_PASSWORD}'
+  AWS_ACCESS_KEY_ID: '${SECRET_VOLSYNC_AWS_ACCESS_KEY_ID}'
+  AWS_SECRET_ACCESS_KEY: '${SECRET_VOLSYNC_AWS_SECRET_ACCESS_KEY}'
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: recipes-media
+  namespace: home
+spec:
+  sourcePVC: recipes-media
+  trigger:
+    schedule: "0 7 * * *"
+  restic:
+    copyMethod: Snapshot
+    pruneIntervalDays: 7
+    repository: recipes-media-restic-target
+    cacheCapacity: 10Gi
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    storageClassName: cephfs-hdd
+    retain:
+      daily: 7
+      monthly: 6
+      yearly: 5
+      within: 3d
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: v1
+kind: Secret
+metadata:
+  name: recipes-static-restic-target
+  namespace: home
+stringData:
+  RESTIC_REPOSITORY: 's3:${SECRET_VOLSYNC_REPOSITORY}/recipes-static'
+  RESTIC_PASSWORD: '${SECRET_VOLSYNC_PASSWORD}'
+  AWS_ACCESS_KEY_ID: '${SECRET_VOLSYNC_AWS_ACCESS_KEY_ID}'
+  AWS_SECRET_ACCESS_KEY: '${SECRET_VOLSYNC_AWS_SECRET_ACCESS_KEY}'
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/volsync.backube/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: recipes-static
+  namespace: home
+spec:
+  sourcePVC: recipes-static
+  trigger:
+    schedule: "0 7 * * *"
+  restic:
+    copyMethod: Snapshot
+    pruneIntervalDays: 7
+    repository: recipes-static-restic-target
+    cacheCapacity: 10Gi
+    volumeSnapshotClassName: csi-cephfsplugin-snapclass
+    storageClassName: cephfs-hdd
+    retain:
+      daily: 7
+      monthly: 6
+      yearly: 5
+      within: 3d
