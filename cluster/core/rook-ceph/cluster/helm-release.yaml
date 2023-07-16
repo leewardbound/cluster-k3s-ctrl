@@ -69,7 +69,7 @@ spec:
             devices:
               - name: "sdb"
               - name: "sdc"
-              - name: "nvme0"
+              - name: "nvme0n1"
                 config:
                   osdsPerDevice: "5"
           - name: "ziti"
