@@ -91,7 +91,7 @@ spec:
     cephBlockPools:
       - name: ceph-blockpool
         spec:
-          failureDomain: disk
+          failureDomain: device
           replicated:
             size: 3
         storageClass:
@@ -112,7 +112,7 @@ spec:
             csi.storage.k8s.io/fstype: ext4
       - name: ceph-block-nvme-norepl
         spec:
-          failureDomain: disk
+          failureDomain: device
           deviceClass: nvme
           replicated:
             size: 1
@@ -142,7 +142,7 @@ spec:
             activeStandby: true
           metadataPool:
             deviceClass: hdd
-            failureDomain: disk
+            failureDomain: device
             replicated:
               size: 3
               requireSafeReplicaSize: true
