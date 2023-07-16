@@ -91,9 +91,10 @@ spec:
     cephBlockPools:
       - name: ceph-blockpool
         spec:
-          failureDomain: device
+          failureDomain: host
           replicated:
-            size: 3
+            size: 2
+            requireSafeReplicaSize: false
         storageClass:
           enabled: true
           name: ceph-block
@@ -112,7 +113,7 @@ spec:
             csi.storage.k8s.io/fstype: ext4
       - name: ceph-block-nvme-norepl
         spec:
-          failureDomain: device
+          failureDomain: host
           deviceClass: nvme
           replicated:
             size: 1
@@ -142,10 +143,10 @@ spec:
             activeStandby: true
           metadataPool:
             deviceClass: hdd
-            failureDomain: device
+            failureDomain: host
             replicated:
-              size: 3
-              requireSafeReplicaSize: true
+              size: 2
+              requireSafeReplicaSize: false
             parameters:
               # Inline compression mode for the data pool
               # Further reference: https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#inline-compression
