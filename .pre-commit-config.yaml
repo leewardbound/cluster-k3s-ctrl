@@ -25,6 +25,6 @@ repos:
     hooks:
       - id: fix-smartquotes
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.16.4
+    rev: v8.18.2
     hooks:
       - id: gitleaks
